@@ -32,7 +32,7 @@ public class Unite {
     protected double porteeVision;
 
     // Start of user code to add fields for Unite
-    protected Case maCase;
+    protected Case<Point> maCase;
     protected Base maBase;
     protected Carte map;
     // End of user code
@@ -163,7 +163,7 @@ public class Unite {
      * Return maCase.
      * @return maCase
      */
-    public Case getCase() {
+    public Case<Point> getCase() {
         return maCase;
     }
 
@@ -177,8 +177,8 @@ public class Unite {
 
         Unite ret = null;
         int i=1,tailleC=0;
-        int posX = this.maCase.getIndex().getX();
-        int posY = this.maCase.getIndex().getY();
+        int posX = (int)this.maCase.getIndex().getX();
+        int posY = (int)this.maCase.getIndex().getY();
         boolean ennemieTrouve=false;
         while(i<= porteeVision && !ennemieTrouve)
         {
@@ -239,10 +239,10 @@ public class Unite {
     public double calculerDistance(Unite ennemie) {
         // Start of user code for method calculerDistance
         double ret = 0;
-        int posX = this.maCase.getIndex().getX();
-        int posY = this.maCase.getIndex().getY();
-        double cX = ennemie.getCase().getIndex().getX();
-        double cY = ennemie.getCase().getIndex().getY();
+        int posX = (int)this.maCase.getIndex().getX();
+        int posY = (int)this.maCase.getIndex().getY();
+        int cX = (int)ennemie.getCase().getIndex().getX();
+        int cY = (int)ennemie.getCase().getIndex().getY();
         ret = Math.sqrt(Math.pow(posX-cX,2) + Math.pow(posY-cY,2));
         return ret;
         // End of user code
