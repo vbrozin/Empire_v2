@@ -14,7 +14,7 @@ package environment;
 
 import agents.Unite;
 
-import java.util.HashSet;
+import java.util.*;
 
 /**
  * Description of the class Case.
@@ -72,6 +72,18 @@ public class Case<T>{
     public HashSet<Unite> getUnite() {
        return unites;
     }
+
+    public Unite getUnite(int i) {
+        Unite res=null;
+        int j=0;
+        Iterator iterator = unites.iterator();
+        while(iterator.hasNext())
+            if (j == i)
+                res = (Unite) iterator.next();
+
+       return res;
+    }
+
     // Start of user code to add methods for Case
 
     // End of user code

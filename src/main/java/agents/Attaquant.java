@@ -14,6 +14,7 @@ package agents;
 
 import environment.Carte;
 import environment.Case;
+import java.awt.*;
 
 /**
 * Description of the class Attaquant.
@@ -31,9 +32,9 @@ public class Attaquant extends Unite implements IUniteLibre, IAgent {
     /**
      * Constructor.
      */
-    public Attaquant(Base b, int pv, int pt, int pa, int t, int va, double po, Case c, int v) {
+    public Attaquant(Base b, int pv, int pt, int pa, int t, int va, double po, Case c,Carte ca, int v) {
     // Start of user code for constructor Unite
-    super(b, pv, pt, pa, t, va, po, c);
+    super(b, pv, pt, pa, t, va, po, c, ca);
     this.vitesse = v;
     // End of user code
     }
@@ -86,28 +87,28 @@ public class Attaquant extends Unite implements IUniteLibre, IAgent {
      * @param cible
      */
     @Override
-    public void suivreUnite(IUniteLibre cible) {
+    public void suivreUnite(Unite cible) {
         int cibleX = cible.getCase().getIndex().getX();
         int cibleY = cible.getCase().getIndex().getY();
         int myX = maCase.getIndex().getX();
         int myY = maCase.getIndex().getY();
         int deltaX = cibleX-myX;
         int deltaY = cibleY-myY;
-        if(abs(deltaX) > abs(deltaY)) {
+        if(Math.abs(deltaX) > Math.abs(deltaY)) {
             if(deltaX < 0)
                 //deplacement case gauche
-                seDeplacer(getCase(new Point(myX-1,myY)));
+                seDeplacer(map.getCase(new Point(myX-1,myY)));
             else
                 //deplacement case droite
-                seDeplacer(getCase(new Point(myX+1,myY)));
+                seDeplacer(map.getCase(new Point(myX+1,myY)));
         }
         else {
             if(deltaY < 0)
                 //deplacement case bas
-                seDeplacer(getCase(new Point(myY-1,myX)));
+                seDeplacer(map.getCase(new Point(myY-1,myX)));
             else
                 //deplacement case haut
-                seDeplacer(getCase(new Point(myY+1,myX)));
+                seDeplacer(map.getCase(new Point(myY+1,myX)));
         }
     }
 

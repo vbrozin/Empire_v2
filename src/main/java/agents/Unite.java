@@ -12,9 +12,11 @@ package agents;
 
 // End of user code
 
+import environment.Carte;
 import environment.Case;
 
 import java.awt.*;
+import java.util.HashSet;
 
 /**
 * Description of the class Unite.
@@ -32,12 +34,13 @@ public class Unite {
     // Start of user code to add fields for Unite
     protected Case maCase;
     protected Base maBase;
+    protected Carte map;
     // End of user code
 
     /**
      * Constructor.
      */
-    public Unite(Base b, int pv, int pt, int pa, int t, int va, double po, Case c) {
+    public Unite(Base b, int pv, int pt, int pa, int t, int va, double po, Case c,Carte ca) {
         // Start of user code for constructor Unite
         super();
         this.maBase = b;
@@ -48,6 +51,7 @@ public class Unite {
         this.vitesseAttaque = va;
         this.porteeVision = po;
         this.maCase = c;
+        this.map = ca;
         // End of user code
     }
 
@@ -183,19 +187,29 @@ public class Unite {
             {
                 // ligne du haut ->
                 if(verifierCase(new Point(posX-i+j,posY+i))) {
-                    ret = map.getUnites(new Point(posX-i+j,posY+i));
+                    ret = map.getCase(new Point(posX-i+j,posY+i)).getUnite(0);
+                    ennemieTrouve=true;
                     break;
                 }
                 // colonne de droite (haut vers bas)
                 if(verifierCase(new Point(posX+i,posY+i-j))) {
-                    ret = map.getUnites(new Point(posX+i,posY+i-j));
+                    ret = map.getCase(new Point(posX+i,posY+i-j)).getUnite(0);
+                    ennemieTrouve=true;
+                    break;
+                }
+                // ligne du bas <-
+                if(verifierCase(new Point(posX+i-j,posY-i))) {
+                    ret = map.getCase(new Point(posX+i-j,posY-i)).getUnite(0);
+                    ennemieTrouve=true;
+                    break;
+                }
+                 // colonne gauche (bas vers haut)
+                if(verifierCase(new Point(posX-i,posY-i+j))) {
+                    ret = map.getCase(new Point(posX-i,posY-i+j)).getUnite(0);
+                    ennemieTrouve=true;
                     break;
                 }
 
-                if(verifierCase(new Point(posX+i,posY+i-j))) {
-                    ret = map.getUnites(new Point(posX+i,posY+i-j));
-                    break;
-                }
             }
                 i++;
         }
@@ -217,13 +231,13 @@ public class Unite {
 
     /**
      * Description of the method calculerDistance.
+     * Calcul la distance entre l'Unite et une unite ennemie par Pythagore
      *
      * @param ennemie
      * @return ret
      */
     public double calculerDistance(Unite ennemie) {
         // Start of user code for method calculerDistance
-
         double ret = 0;
         int posX = this.maCase.getIndex().getX();
         int posY = this.maCase.getIndex().getY();
@@ -245,12 +259,11 @@ public class Unite {
     }
 
     // Start of user code to add methods for Unite
-    @Override
     private boolean verifierCase(Point p) {
-        if(getCase(p).estLibre())
+        if(map.getCase(p).estLibre())
             return false;
         else {
-            if(getCase(p).getUnite(0).getBase() == this.maBase)
+            if(map.getCase(p).getUnite(0).getBase() == this.maBase)
                 return false;
             else
                 return true;
@@ -258,10 +271,9 @@ public class Unite {
 
     }
 
-    @Override
     public void subirDegat(int pvRestant) {
-        if(pvRestant <= 0){}
-            //detruir unité
+        if(pvRestant <= 0)
+            map.detruirUnite(this);
         else
             this.pvRestant = pvRestant;
     }

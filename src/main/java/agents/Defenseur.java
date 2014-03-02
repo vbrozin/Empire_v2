@@ -12,6 +12,7 @@ package agents;
 
 // End of user code
 
+import environment.Carte;
 import environment.Case;
 
 /**
@@ -28,9 +29,9 @@ public class Defenseur extends Unite implements IAgent {
     /**
      * Constructor.
      */
-    public Defenseur(Base b, int pv, int pt, int pa, int t, int va, double po, Case c) {
+    public Defenseur(Base b, int pv, int pt, int pa, int t, int va, double po, Case c, Carte ca) {
         // Start of user code for constructor Unite
-        super(b, pv, pt, pa, t, va, po, c);
+        super(b, pv, pt, pa, t, va, po, c, ca);
         // End of user code
     }
 

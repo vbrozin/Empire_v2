@@ -96,6 +96,11 @@ public class Carte {
 
 
     // Start of user code to add methods for Carte
+    public void detruirUnite(Unite dead) {
+        dead = null;
+        //On fait appel au garbage collector
+		System.gc();
+    }
 
     // End of user code
 }
