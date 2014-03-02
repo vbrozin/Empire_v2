@@ -12,6 +12,7 @@ package agents;
 
 // End of user code
 
+import environment.Carte;
 import environment.Case;
 import environment.Ressource;
 import environment.TypeRessource;
@@ -36,10 +37,10 @@ public class Recolteur extends Unite implements IUniteLibre, IAgent {
     /**
      * Constructor.
      */
-    public Recolteur(Base b, int pv, int pt, int pa, int t, int va, double po, Case c,
+    public Recolteur(Base b, int pv, int pt, int pa, int t, int va, double po, Case c, Carte ca,
                      int capa, int vitD, int vitR, double poR) {
         // Start of user code for constructor Unite
-        super(b, pv, pt, pa, t, va, po, c);
+        super(b, pv, pt, pa, t, va, po, c, ca);
         this.capaciteTotal = capa;
         this.vitesseDeplacement = vitD;
         this.vitesseRecolte = vitR;
@@ -235,7 +236,7 @@ public class Recolteur extends Unite implements IUniteLibre, IAgent {
      * @param cible
      */
     @Override
-    public void suivreUnite(IUniteLibre cible) {
+    public void suivreUnite(Unite cible) {
 
     }
 

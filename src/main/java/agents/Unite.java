@@ -40,7 +40,7 @@ public class Unite {
     /**
      * Constructor.
      */
-    public Unite(Base b, int pv, int pt, int pa, int t, int va, double po, Case c,Carte ca) {
+    public Unite(Base b, int pv, int pt, int pa, int t, int va, double po, Case<Point> c, Carte ca) {
         // Start of user code for constructor Unite
         super();
         this.maBase = b;
@@ -52,6 +52,11 @@ public class Unite {
         this.porteeVision = po;
         this.maCase = c;
         this.map = ca;
+
+        // ajout de l'unité dans ca case
+        c.ajouterUnite(this);
+        // ajout de l'unite dans sa base
+        b.addUnites(this);
         // End of user code
     }
 
@@ -156,7 +161,7 @@ public class Unite {
      * @return maBase
      */
     public Base getBase() {
-        return maBase;
+        return this.maBase;
     }
 
     /**
@@ -164,7 +169,7 @@ public class Unite {
      * @return maCase
      */
     public Case<Point> getCase() {
-        return maCase;
+        return this.maCase;
     }
 
     /**
@@ -176,42 +181,39 @@ public class Unite {
         // Start of user code for method calculerUnitePlusProche
 
         Unite ret = null;
-        int i=1,tailleC=0;
-        int posX = (int)this.maCase.getIndex().getX();
-        int posY = (int)this.maCase.getIndex().getY();
+        int i=1,j=0,tailleC=0;
+        int posX = (int) this.maCase.getIndex().getX();
+        int posY = (int) this.maCase.getIndex().getY();
         boolean ennemieTrouve=false;
         while(i<= porteeVision && !ennemieTrouve)
         {
             tailleC = 1+2*i;
-            for(int j=0;j<tailleC-1;j++)
+            j=0;
+            while(j<tailleC-1 && !ennemieTrouve)
             {
                 // ligne du haut ->
                 if(verifierCase(new Point(posX-i+j,posY+i))) {
                     ret = map.getCase(new Point(posX-i+j,posY+i)).getUnite(0);
                     ennemieTrouve=true;
-                    break;
                 }
                 // colonne de droite (haut vers bas)
-                if(verifierCase(new Point(posX+i,posY+i-j))) {
+                if(verifierCase(new Point(posX+i,posY+i-j)) && !ennemieTrouve) {
                     ret = map.getCase(new Point(posX+i,posY+i-j)).getUnite(0);
                     ennemieTrouve=true;
-                    break;
                 }
                 // ligne du bas <-
-                if(verifierCase(new Point(posX+i-j,posY-i))) {
+                if(verifierCase(new Point(posX+i-j,posY-i)) && !ennemieTrouve) {
                     ret = map.getCase(new Point(posX+i-j,posY-i)).getUnite(0);
                     ennemieTrouve=true;
-                    break;
                 }
                  // colonne gauche (bas vers haut)
-                if(verifierCase(new Point(posX-i,posY-i+j))) {
+                if(verifierCase(new Point(posX-i,posY-i+j)) && !ennemieTrouve) {
                     ret = map.getCase(new Point(posX-i,posY-i+j)).getUnite(0);
                     ennemieTrouve=true;
-                    break;
                 }
-
+                j++;
             }
-                i++;
+            i++;
         }
         return ret;
         // End of user code
@@ -224,8 +226,10 @@ public class Unite {
      */
     public void attaquer(Unite cible) {
         // Start of user code for method attaquer
-        if(calculerDistance(cible) <= porteeAttaque)
+        if(calculerDistance(cible) <= porteeAttaque) {
+            System.out.println(this.maBase.getNom() + " attaque " + cible.getBase().getNom() + "  pvRestant = " + (cible.getPvRestant()-pointAttaque));
             cible.subirDegat(cible.getPvRestant() - pointAttaque);
+        }
         // End of user code
     }
 
@@ -239,10 +243,10 @@ public class Unite {
     public double calculerDistance(Unite ennemie) {
         // Start of user code for method calculerDistance
         double ret = 0;
-        int posX = (int)this.maCase.getIndex().getX();
-        int posY = (int)this.maCase.getIndex().getY();
-        int cX = (int)ennemie.getCase().getIndex().getX();
-        int cY = (int)ennemie.getCase().getIndex().getY();
+        int posX = (int) this.maCase.getIndex().getX();
+        int posY = (int) this.maCase.getIndex().getY();
+        int cX = (int) ennemie.getCase().getIndex().getX();
+        int cY = (int) ennemie.getCase().getIndex().getY();
         ret = Math.sqrt(Math.pow(posX-cX,2) + Math.pow(posY-cY,2));
         return ret;
         // End of user code
@@ -260,15 +264,22 @@ public class Unite {
 
     // Start of user code to add methods for Unite
     private boolean verifierCase(Point p) {
-        if(map.getCase(p).estLibre())
-            return false;
-        else {
-            if(map.getCase(p).getUnite(0).getBase() == this.maBase)
-                return false;
-            else
-                return true;
-        }
+        if(p.getX() >= 0 && p.getY() >= 0 && p.getX() < map.getHauteur() && p.getY() < map.getLargeur()) {
 
+            if(map.getCase(p).estLibre() && map.getCase(p).getUnite().size() != 0){
+
+                System.out.println(map.getCase(p).getUnite(0).getBase().getNom() + " trouvé");
+                if(map.getCase(p).getUnite(0).getBase() == this.maBase)
+                    return false;
+                else
+                    return true;
+            }
+
+            else
+                return false;
+        }
+        else
+            return false;
     }
 
     public void subirDegat(int pvRestant) {

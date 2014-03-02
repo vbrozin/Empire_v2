@@ -32,7 +32,7 @@ public class Attaquant extends Unite implements IUniteLibre, IAgent {
     /**
      * Constructor.
      */
-    public Attaquant(Base b, int pv, int pt, int pa, int t, int va, double po, Case c,Carte ca, int v) {
+    public Attaquant(Base b, int pv, int pt, int pa, int t, int va, double po, Case<Point> c,Carte ca, int v) {
     // Start of user code for constructor Unite
     super(b, pv, pt, pa, t, va, po, c, ca);
     this.vitesse = v;
@@ -62,9 +62,11 @@ public class Attaquant extends Unite implements IUniteLibre, IAgent {
     */
     @Override
     public void seDeplacer(Case caseLibre) {
-        maCase.retirerUnite(this);
-        maCase = caseLibre;
-        maCase.ajouterUnite(this);
+        if(caseLibre.estLibre()) {
+            maCase.retirerUnite(this);
+            maCase = caseLibre;
+            maCase.ajouterUnite(this);
+        }
     }
 
     /**
@@ -88,10 +90,10 @@ public class Attaquant extends Unite implements IUniteLibre, IAgent {
      */
     @Override
     public void suivreUnite(Unite cible) {
-        int cibleX = cible.getCase().getIndex().getX();
-        int cibleY = cible.getCase().getIndex().getY();
-        int myX = maCase.getIndex().getX();
-        int myY = maCase.getIndex().getY();
+        int cibleX = (int) cible.getCase().getIndex().getX();
+        int cibleY = (int) cible.getCase().getIndex().getY();
+        int myX = (int) maCase.getIndex().getX();
+        int myY = (int) maCase.getIndex().getY();
         int deltaX = cibleX-myX;
         int deltaY = cibleY-myY;
         if(Math.abs(deltaX) > Math.abs(deltaY)) {

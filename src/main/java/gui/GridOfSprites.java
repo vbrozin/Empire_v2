@@ -69,8 +69,8 @@ public class GridOfSprites extends JFrame implements ActionListener{
     private void loadSprites() {
         try {
             sprites = new BufferedImage[2];
-            sprites[0] = ImageIO.read(new File("/Users/sylvainchen/git/test-github/empire/src/main/resources/grass.jpg"));
-            sprites[1] = ImageIO.read(new File("/Users/sylvainchen/git/test-github/empire/src/main/resources/Bricks.jpg"));
+            sprites[0] = ImageIO.read(new File("/Users/sylvainchen/git/test-github/Empire_v2/src/main/resources/grass.jpg"));
+            sprites[1] = ImageIO.read(new File("/Users/sylvainchen/git/test-github/Empire_v2/src/main/resources/Bricks.jpg"));
         } catch (IOException ex) {
             Logger.getLogger(GridOfSprites.class.getName()).log(Level.SEVERE, null, ex);
         }
