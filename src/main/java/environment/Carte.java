@@ -29,8 +29,6 @@ public class Carte {
     private int largeur;
     private Map<Point, Case> map = new HashMap<Point, Case>();
     private HashSet<Point> points = new HashSet<Point>();
-    // private HashSet<Case> cases;
-    // private HashSet<Arete> aretes;
 
     // Start of user code to add fields for Carte
 
@@ -93,12 +91,15 @@ public class Carte {
         return map.get(p);
     }
 
-
-
-    // Start of user code to add methods for Carte
-    public void detruirUnite(Unite dead) {
-        System.out.println("\n************   " + dead.getBase().getNom() + " is dead     ************");
+    /**
+     * Détruit l'unité en question
+     * @param dead l'unité qui doit disparaître
+     */
+    public void detruireUnite(Unite dead) {
+        System.out.println("************ Une unité de "+ dead.getBase().getNom() + " est mort ************");
+        // On retire l'unité de la case
         dead.getCase().retirerUnite(dead);
+        // On retire l'unité de la base
         dead.getBase().removeUnites(dead);
         dead = null;
         //On fait appel au garbage collector

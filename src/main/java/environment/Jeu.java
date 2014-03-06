@@ -18,14 +18,19 @@ import java.util.ArrayList;
 
 /**
 * Description of the class Jeu.
-*
+* Le jeu
 */
 
 public class Jeu {
+    /**Liste des bases du jeu */
     private ArrayList<Base> bases;
+    /**Liste des bases qui doivent encore jouer pendant le tour*/
     private ArrayList<Base> playedBases;
+    /**La carte du jeu */
     private Carte carte;
+    /**La base courante, celle qui joue actuellement */
     private Base baseCourante;
+    /**Le temps */
     private double t;
 
     // Start of user code to add fields for Jeu
@@ -35,10 +40,14 @@ public class Jeu {
     /**
      * Constructor.
      */
-    public Jeu() {
+    public Jeu(Carte carte, ArrayList<Base> bases) {
         // Start of user code for constructor Jeu
         super();
+        this.carte = carte;
+        this.bases = bases;
         t = 0;
+        initTour();
+        choisirBaseCourante();
         // End of user code
     }
 
@@ -50,21 +59,6 @@ public class Jeu {
         return bases;
     }
 
-    /**
-     * Set a value to attribute bases.
-     * @param bases
-     */
-    public void setBases(ArrayList<Base> bases) {
-        this.bases = bases;
-    }
-
-    /**
-     * Add a bases to the bases collection.
-     * @param bases_elt Element to add.
-     */
-    public void addBases(Base bases_elt) {
-        this.bases.add(bases_elt);
-    }
 
     /**
      * Remove a bases to the bases collection.
@@ -82,37 +76,33 @@ public class Jeu {
         return carte;
     }
 
-    /**
-     * Set a value to attribute carte.
-     * @param carte
-     */
-    public void setCarte(Carte carte) {
-        this.carte = carte;
-    }
-
 
     /**
      * Description of the method avancerTemps.
      *
      */
     public void avancerTemps() {
-        // Start of user code for method avancerTemps
         t++;
-        // End of user code
     }
 
     /**
      * Description of the method jouer.
-     *
-     * @param baseCourante
      */
-    public void jouer(Base baseCourante) {
-        // Start of user code for method jouer
+    public void jouer() {
         Base b = getBaseCourante();
+        b.jouer();
+        // La base courante vient de jouer
+        if(tourFini()) {
+            // S'il ne reste que la base courante de jouer, on initialise le tour de jeu
+            initTour();
+            // On choisit alors aléatoirement une nouvelle base
+            choisirBaseCourante();
+        }
+        else {
+            // Sinon on change la base courante
+            changerBaseCourante();
+        }
 
-        baseCourante.jouer();
-        changerBaseCourante();
-        // End of user code
     }
 
     /**
@@ -127,8 +117,11 @@ public class Jeu {
         ret = playedBases.size() == 0;
 
         for(Base b : bases) {
-            if (b.getPv() == 0)
+            if (b.getPv() == 0) {
+                removeBases(b);
                 ret = true;
+            }
+
         }
 
         return ret;
@@ -147,17 +140,20 @@ public class Jeu {
     }
 
     /**
-     * Description of the method changerBaseCourante.
-     *
+     * Change la base courante
      */
     public void changerBaseCourante() {
-        // Start of user code for method changerBaseCourante
         playedBases.remove(baseCourante);
+        choisirBaseCourante();
+    }
 
+    /**
+     * Choisi une base courante aléatoirement parmi celles qui n'ont pas encore joués
+     */
+    public void choisirBaseCourante() {
         int n = playedBases.size();
         int number = (int)(Math.random()*n);
         baseCourante = playedBases.get(number);
-        // End of user code
     }
 
     /**
@@ -165,9 +161,16 @@ public class Jeu {
      *
      */
     public void initTour() {
-        // Start of user code for method changerBaseCourante
         playedBases = bases;
-        // End of user code
+    }
+
+
+    /**
+     * Description of the method changerBaseCourante.
+     *
+     */
+    public boolean tourFini() {
+        return playedBases.size() == 1;
     }
 
     // Start of user code to add methods for Jeu

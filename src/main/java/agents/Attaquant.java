@@ -14,7 +14,7 @@ package agents;
 
 import environment.Carte;
 import environment.Case;
-import java.awt.*;
+import java.awt.Point;
 
 /**
 * Description of the class Attaquant.
@@ -32,7 +32,7 @@ public class Attaquant extends Unite implements IUniteLibre, IAgent {
     /**
      * Constructor.
      */
-    public Attaquant(Base b, int pv, int pt, int pa, int t, int va, double po, Case<Point> c,Carte ca, int v) {
+    public Attaquant(Base b, int pv, int pt, int pa, int t, int va, double po, Case<Point> c, Carte ca, int v) {
     // Start of user code for constructor Unite
     super(b, pv, pt, pa, t, va, po, c, ca);
     this.vitesse = v;
@@ -69,19 +69,6 @@ public class Attaquant extends Unite implements IUniteLibre, IAgent {
         }
     }
 
-    /**
-     * Description of the method seDeplacerCase.
-     *
-     * @param caseAdjacente
-     */
-    @Override
-    public void seDeplacerCase(Case caseAdjacente) {
-        if(caseAdjacente.estLibre()) {
-            maCase.retirerUnite(this);
-            maCase = caseAdjacente;
-            maCase.ajouterUnite(this);
-        }
-    }
 
     /**
      * Description of the method suivreUnite.

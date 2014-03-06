@@ -29,7 +29,7 @@ public class Base extends Agent  {
     private int bois;
     private int nourriture;
     private int pv;
-    private HashSet<Unite> unites;
+    private List<Unite> unites;
     private String nom;
     private Carte carte;
 
@@ -106,7 +106,7 @@ public class Base extends Agent  {
         this.nourriture = nourriture;
         this.nom = nom;
         this.carte = c;
-        this.unites = new HashSet<Unite>();
+        this.unites = new ArrayList<Unite>();
         // End of user code
     }
 
@@ -162,16 +162,8 @@ public class Base extends Agent  {
      * Return unites.
      * @return unites
      */
-    public HashSet<Unite> getUnites() {
+    public List<Unite> getUnites() {
         return unites;
-    }
-
-    /**
-     * Set a value to attribute unites.
-     * @param unites
-     */
-    public void setUnites(HashSet<Unite> unites) {
-        this.unites = unites;
     }
 
     /**

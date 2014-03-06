@@ -217,19 +217,6 @@ public class Recolteur extends Unite implements IUniteLibre, IAgent {
         maCase = caseLibre;
         maCase.ajouterUnite(this);
     }
-
-    /**
-     * Description of the method seDeplacerCase.
-     *
-     * @param caseAdjacente
-     */
-    @Override
-    public void seDeplacerCase(Case caseAdjacente) {
-        maCase.retirerUnite(this);
-        maCase = caseAdjacente;
-        maCase.ajouterUnite(this);
-    }
-
     /**
      * Description of the method suivreUnite.
      *

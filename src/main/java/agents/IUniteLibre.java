@@ -34,15 +34,7 @@ public interface IUniteLibre {
     public void seDeplacer(Case caseLibre);
 
     /**
-     *  Description of the method seDeplacerCase.
-     *
-     *
-     * @param caseAdjacente
-     */
-    public void seDeplacerCase(Case caseAdjacente);
-
-    /**
-     *  Description of the method suivreUnite.
+     *  Description of the method seDeplacer.
      *
      *
      * @param cible

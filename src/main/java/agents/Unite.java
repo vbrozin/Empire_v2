@@ -52,8 +52,7 @@ public class Unite {
         this.porteeVision = po;
         this.maCase = c;
         this.map = ca;
-
-        // ajout de l'unité dans ca case
+        // ajout de l'unité dans sa case
         c.ajouterUnite(this);
         // ajout de l'unite dans sa base
         b.addUnites(this);
@@ -185,7 +184,7 @@ public class Unite {
         int posX = (int) this.maCase.getIndex().getX();
         int posY = (int) this.maCase.getIndex().getY();
         boolean ennemieTrouve=false;
-        while(i<= porteeVision && !ennemieTrouve)
+        while(!ennemieTrouve && i<= porteeVision)
         {
             tailleC = 1+2*i;
             j=0;
@@ -197,17 +196,17 @@ public class Unite {
                     ennemieTrouve=true;
                 }
                 // colonne de droite (haut vers bas)
-                if(verifierCase(new Point(posX+i,posY+i-j)) && !ennemieTrouve) {
+                if(!ennemieTrouve && verifierCase(new Point(posX+i,posY+i-j))) {
                     ret = map.getCase(new Point(posX+i,posY+i-j)).getUnite(0);
                     ennemieTrouve=true;
                 }
                 // ligne du bas <-
-                if(verifierCase(new Point(posX+i-j,posY-i)) && !ennemieTrouve) {
+                if(!ennemieTrouve && verifierCase(new Point(posX+i-j,posY-i))) {
                     ret = map.getCase(new Point(posX+i-j,posY-i)).getUnite(0);
                     ennemieTrouve=true;
                 }
                  // colonne gauche (bas vers haut)
-                if(verifierCase(new Point(posX-i,posY-i+j)) && !ennemieTrouve) {
+                if(!ennemieTrouve && verifierCase(new Point(posX-i,posY-i+j))) {
                     ret = map.getCase(new Point(posX-i,posY-i+j)).getUnite(0);
                     ennemieTrouve=true;
                 }
@@ -266,7 +265,7 @@ public class Unite {
     private boolean verifierCase(Point p) {
         if(p.getX() >= 0 && p.getY() >= 0 && p.getX() < map.getHauteur() && p.getY() < map.getLargeur()) {
 
-            if(map.getCase(p).estLibre() && map.getCase(p).getUnite().size() != 0){
+            if(map.getCase(p).estLibre() && map.getCase(p).getUnites().size() != 0){
 
                 System.out.println(map.getCase(p).getUnite(0).getBase().getNom() + " trouvé");
                 if(map.getCase(p).getUnite(0).getBase() == this.maBase)
@@ -284,7 +283,7 @@ public class Unite {
 
     public void subirDegat(int pvRestant) {
         if(pvRestant <= 0)
-            map.detruirUnite(this);
+            map.detruireUnite(this);
         else
             this.pvRestant = pvRestant;
     }

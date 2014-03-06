@@ -18,17 +18,21 @@ import java.util.*;
 
 /**
  * Description of the class Case.
- *
+ * Une case de notre carte
  */
 
 public class Case<T>{
 
-    // Start of user code to add fields for Case
-    private final int capacite = 1;
+
+    /** La ressource s'il s'agit d'une case ressource*/
     private Ressource ressource;
+    /** vrai s'il s'agit d'un obstacle*/
     private boolean obstacle;
-    //private boolean libre;
+    /** Le nombre maximum d'unités dans une case*/
+    private final int capacite = 1;
+    /** unités dans la case*/
     private ArrayList<Unite> unites;
+    /** l'étiquette de la case*/
     private T index;
     // End of user code
 
@@ -41,10 +45,16 @@ public class Case<T>{
         unites = new ArrayList<Unite>();
     }
 
+    /**
+     * Recupère l'étiquette
+     */
     public T getIndex() {
         return index;
     }
 
+    /**
+     * Vrai si la case est occupée
+     */
     public boolean estLibre() {
         if(!obstacle)
             return unites.size() <= capacite;
@@ -52,30 +62,44 @@ public class Case<T>{
             return false;
     }
 
+    /**
+     * Vrai si la case est un obstacle
+     */
     public boolean estObstacle() {
         return obstacle;
     }
 
+    /**
+     * Ajoute une unité dans la case
+     */
     public void ajouterUnite(Unite unite) {
         unites.add(unite);
     }
 
+    /**
+     * Retire l'unité dans la case
+     */
     public void retirerUnite(Unite unite) {
         unites.remove(unite);
     }
 
+    /**
+     * Est-ce que la case contient l'unité en question.
+     */
     public boolean contientUnite(Unite unite) {
         return unites.contains(unite);
     }
 
-    public int compte() {
-        return unites.size();
-    }
-
-    public ArrayList<Unite> getUnite() {
+    /**
+     * Retourne les unités contenues dans la case
+     */
+    public ArrayList<Unite> getUnites() {
        return unites;
     }
 
+    /**
+     * Retourne la ième unité (0 à n)
+     */
     public Unite getUnite(int i) {
         return unites.get(i);
     }

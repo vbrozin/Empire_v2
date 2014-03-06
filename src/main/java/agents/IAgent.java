@@ -6,7 +6,7 @@ package agents;
 public interface IAgent {
     /**
      *  Description of the method reagir.
-     *
+     *  action réactive de l'agent
      *
      */
     public void reagir();

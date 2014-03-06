@@ -18,7 +18,9 @@ package environment;
 */
 
 public class Ressource{
+    /** La quantité de la ressource*/
     private int quantite;
+    /** Le type de ressource*/
     private TypeRessource typeRessource;
 
     // Start of user code to add fields for Ressource
@@ -45,8 +47,8 @@ public class Ressource{
     }
 
     /**
-     * Set a value to attribute quantite.
-     * @param n
+     * Décrémentente la quantité n de la ressource
+     * @param n la quantité à retirer de la ressource
      */
     public void decrementerQuantite(int n) {
         if (quantite -n < 0)
@@ -65,9 +67,8 @@ public class Ressource{
 
 
     /**
-     * Description of the method estVide.
-     *
-     * @return ret
+     * Retourne vrai si la case est vide
+     * @return ret vrai si la case est vide
      */
     public boolean estVide() {
         // Start of user code for method estVide

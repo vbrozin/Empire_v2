@@ -12,6 +12,7 @@ public class Agent implements IAgent{
     }
     /**
      * Description of the method reagir.
+     * action réactive de l'agent
      */
     @Override
     public void reagir() {
