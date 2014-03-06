@@ -28,7 +28,7 @@ public class Case<T>{
     private Ressource ressource;
     private boolean obstacle;
     //private boolean libre;
-    private HashSet<Unite> unites;
+    private ArrayList<Unite> unites;
     private T index;
     // End of user code
 
@@ -38,7 +38,7 @@ public class Case<T>{
     public Case(final T index, final boolean obstacleBoolean) {
         this.index = index;
         this.obstacle = obstacleBoolean;
-        unites = new HashSet<Unite>();
+        unites = new ArrayList<Unite>();
     }
 
     public T getIndex() {
@@ -46,7 +46,10 @@ public class Case<T>{
     }
 
     public boolean estLibre() {
-        return !obstacle && unites.size() < capacite;
+        if(!obstacle)
+            return unites.size() <= capacite;
+        else
+            return false;
     }
 
     public boolean estObstacle() {
@@ -69,19 +72,12 @@ public class Case<T>{
         return unites.size();
     }
 
-    public HashSet<Unite> getUnite() {
+    public ArrayList<Unite> getUnite() {
        return unites;
     }
 
     public Unite getUnite(int i) {
-        Unite res=null;
-        int j=0;
-        Iterator iterator = unites.iterator();
-        while(iterator.hasNext())
-            if (j == i)
-                res = (Unite) iterator.next();
-
-       return res;
+        return unites.get(i);
     }
 
     // Start of user code to add methods for Case

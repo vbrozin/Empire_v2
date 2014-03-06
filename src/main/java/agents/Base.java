@@ -106,6 +106,7 @@ public class Base extends Agent  {
         this.nourriture = nourriture;
         this.nom = nom;
         this.carte = c;
+        this.unites = new HashSet<Unite>();
         // End of user code
     }
 

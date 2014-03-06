@@ -89,7 +89,7 @@ public class Carte {
      * Return largeur.
      * @return largeur
      */
-    public Case<Point> getCase(Point p) {
+    public Case getCase(Point p) {
         return map.get(p);
     }
 
@@ -97,6 +97,9 @@ public class Carte {
 
     // Start of user code to add methods for Carte
     public void detruirUnite(Unite dead) {
+        System.out.println("\n************   " + dead.getBase().getNom() + " is dead     ************");
+        dead.getCase().retirerUnite(dead);
+        dead.getBase().removeUnites(dead);
         dead = null;
         //On fait appel au garbage collector
 		System.gc();
