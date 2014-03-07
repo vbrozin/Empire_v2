@@ -30,8 +30,8 @@ public class Main {
         int x = c.getLargeur()-1;
         int y = c.getHauteur()-1;
         Base b2 = new Base(20,20,50,"red",c, c.getCase(new Point(x, y)));
-        Attaquant u1 = new Attaquant(b1,20,5,20,1,1,5,c.getCase(new Point(0,1)),c,1);
-        //Attaquant u2 = new Attaquant(b1,20,5,1,1,1,5,c.getCase(new Point(1,1)),c,1);
+        Attaquant u1 = new Attaquant(b1,20,5,1,1,1,5,c.getCase(new Point(0,1)),c,1);
+        Attaquant u2 = new Attaquant(b1,20,5,1,1,1,5,c.getCase(new Point(1,1)),c,1);
         //Attaquant u3 = new Attaquant(b1,20,5,1,1,1,5,c.getCase(new Point(1,0)),c,1);
         Attaquant u4 = new Attaquant(b2,20,5,1,1,1,5,c.getCase(new Point(x,y-1)),c,1);
         //Attaquant u5 = new Attaquant(b2,20,5,1,1,1,5,c.getCase(new Point(x-1,y-1)),c,1);

@@ -93,17 +93,20 @@ public class Jeu {
      */
     public void jouer() {
         Base b = getBaseCourante();
-        b.jouer();
+        if(b.getPvRestant() > 0)
+            b.jouer();
         // La base courante vient de jouer
         if(tourFini()) {
             // S'il ne reste que la base courante de jouer, on initialise le tour de jeu
             initTour();
             // On choisit alors aléatoirement une nouvelle base
-            choisirBaseCourante();
+            if(bases.size() != 0)
+                choisirBaseCourante();
         }
         else {
             // Sinon on change la base courante
-            changerBaseCourante();
+            if(bases.size() != 0)
+                changerBaseCourante();
         }
 
     }
@@ -116,16 +119,7 @@ public class Jeu {
     public boolean fini() {
         // Start of user code for method fini
 
-        boolean ret = false;
-        ret = playedBases.size() == 0;
-
-        for(Base b : bases) {
-            if (b.getPv() == 0) {
-                removeBases(b);
-                ret = true;
-            }
-
-        }
+        boolean ret = bases.size() == 1;
 
         return ret;
         // End of user code
@@ -156,7 +150,8 @@ public class Jeu {
     public void choisirBaseCourante() {
         int n = playedBases.size();
         int number = (int)(Math.random()*n);
-        baseCourante = playedBases.get(number);
+        if(playedBases.size() != 0)
+            baseCourante = playedBases.get(number);
     }
 
     /**

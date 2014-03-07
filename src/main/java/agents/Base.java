@@ -261,33 +261,23 @@ public class Base extends Agent implements IAgent  {
             final int height = carte.getHauteur();
             int i = 0;
             for(Attaquant at : attaquants) {
-                if(i==0) {
-                    System.out.println(at.getBase().getNom());
-                    System.out.println(i);
-                    System.out.println(at.getCase().getIndex().getX());
-                    System.out.println(at.getCase().getIndex().getY());
-                }
-                if(at.reagir2()) {
-                    at.reagir();
-                    System.out.println("On attaque");
-                }
-                else {
-                    final AEtoile<Point> astart = new AEtoile<Point>(successorComputer, fabriqueNoeud);
-                    final List<Point> result = astart.compute(at.getCase().getIndex(), cible.getIndex());
-                    if(result.size() > 1) {
-                        Case<Point> caseCible = (Case<Point>)carte.getMap().get(result.get(1));
-                        at.seDeplacer(caseCible);
+                if(at.getPvRestant() > 0) {
+                    if(at.reagir2()) {
+                        at.reagir();
+                        System.out.println("On attaque");
                     }
                     else {
-                        System.out.println("Pas de déplacement possible");
+                        final AEtoile<Point> astart = new AEtoile<Point>(successorComputer, fabriqueNoeud);
+                        final List<Point> result = astart.compute(at.getCase().getIndex(), cible.getIndex());
+                        if(result.size() > 1) {
+                            Case<Point> caseCible = (Case<Point>)carte.getMap().get(result.get(1));
+                            at.seDeplacer(caseCible);
+                        }
+                        else {
+                            System.out.println("Pas de déplacement possible");
+                        }
                     }
                 }
-                if(i==0) {
-                    System.out.println("Après");
-                    System.out.println(at.getCase().getIndex().getX());
-                    System.out.println(at.getCase().getIndex().getY());
-                }
-                i++;
             }
         }
         else {
@@ -371,6 +361,7 @@ public class Base extends Agent implements IAgent  {
 
     public void subirDegats(int pvRestant) {
         if(pvRestant <= 0) {
+            pv = 0;
             jeu.removeBases(this);
             maCase.retirerUnite(this);
         }
