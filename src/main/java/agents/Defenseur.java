@@ -20,7 +20,7 @@ import environment.Case;
 *
 */
 
-public class Defenseur extends Unite implements IAgent {
+public class Defenseur extends Unite{
 
     // Start of user code to add fields for Defenseur
 
@@ -38,9 +38,8 @@ public class Defenseur extends Unite implements IAgent {
     /**
      * Description of the method reagir.
      */
-    @Override
     public void reagir() {
-        Unite ennemie = calculerUnitePlusProche();
+        IAgent ennemie = calculerUnitePlusProche();
         if(ennemie != null)
                 attaquer(ennemie);
     }

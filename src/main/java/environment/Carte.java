@@ -30,10 +30,6 @@ public class Carte {
     private Map<Point, Case> map = new HashMap<Point, Case>();
     private HashSet<Point> points = new HashSet<Point>();
 
-    // Start of user code to add fields for Carte
-
-    // End of user code
-
     /**
      * Constructor.
      */
@@ -43,7 +39,7 @@ public class Carte {
         hauteur = matrix.length;
         for(int i=0; i<hauteur; i++)
             for(int j=0; j<largeur; j++) {
-                Point p = new Point(i,j);
+                Point p = new Point(j,i);
                 points.add(p);
                 Case<Point> c = null;
                 if(" ".equals(matrix[i][j]))

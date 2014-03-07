@@ -11,6 +11,7 @@ package environment;
 
 import agents.Base;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 
@@ -46,6 +47,8 @@ public class Jeu {
         this.carte = carte;
         this.bases = bases;
         t = 0;
+        for(Base b : bases)
+            b.setJeu(this);
         initTour();
         choisirBaseCourante();
         // End of user code
@@ -161,7 +164,10 @@ public class Jeu {
      *
      */
     public void initTour() {
-        playedBases = bases;
+        playedBases = new ArrayList<Base>();
+        for(Base b : bases)
+            playedBases.add(b);
+        t++;
     }
 
 
@@ -171,6 +177,20 @@ public class Jeu {
      */
     public boolean tourFini() {
         return playedBases.size() == 1;
+    }
+
+    /**
+     * Renvoie les cases des autres bases
+     *
+     */
+    public ArrayList<Case<Point>> getCasesBases(Base base) {
+        ArrayList<Base> nouvellesBases = bases;
+        ArrayList<Case<Point>> cases = new ArrayList<Case<Point>>();
+        for(Base b : nouvellesBases) {
+            if(!b.equals(base))
+                cases.add(b.getCase());
+        }
+        return cases;
     }
 
     // Start of user code to add methods for Jeu

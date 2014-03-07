@@ -53,8 +53,8 @@ public class GridOfSprites extends JFrame implements ActionListener{
 
     public GridOfSprites() {
         Carte carte = new Carte(matrix);
-        Base b = new Base(300,300,300,"Base1", c);
-        Base b2 = new Base(300,300,300,"Base2", c);
+        Base b = new Base(20,20,50,"blue",c, c.getCase(new Point(0,0)));
+        Base b1 = new Base(20,20,50,"red",c, c.getCase(new Point(0,0)));
         loadSprites();
         width = boxSize*carte.getLargeur();
         height = boxSize*carte.getHauteur();

@@ -22,7 +22,7 @@ import environment.TypeRessource;
 *
 */
 
-public class Recolteur extends Unite implements IUniteLibre, IAgent {
+public class Recolteur extends Unite implements IUniteLibre {
     private int capaciteTotal;
     private int vitesseDeplacement;
     private int vitesseRecolte;
@@ -222,15 +222,13 @@ public class Recolteur extends Unite implements IUniteLibre, IAgent {
      *
      * @param cible
      */
-    @Override
-    public void suivreUnite(Unite cible) {
+    public void suivreUnite(IAgent cible) {
 
     }
 
     /**
      * Description of the method reagir.
      */
-    @Override
     public void reagir() {
 
     }

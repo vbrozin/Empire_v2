@@ -25,13 +25,23 @@ import java.util.List;
 *
 */
 
-public class Base extends Agent  {
+public class Base extends Agent implements IAgent  {
     private int bois;
     private int nourriture;
-    private int pv;
     private List<Unite> unites;
     private String nom;
     private Carte carte;
+    private Case<Point> maCase;
+
+    public Jeu getJeu() {
+        return jeu;
+    }
+
+    public void setJeu(Jeu jeu) {
+        this.jeu = jeu;
+    }
+
+    private Jeu jeu;
 
 
     // Start of user code to add fields for Base
@@ -99,7 +109,7 @@ public class Base extends Agent  {
     /**
      * Constructor.
      */
-    public Base(int bois, int nourriture, int pv, String nom, Carte c) {
+    public Base(int bois, int nourriture, int pv, String nom, Carte c, Case<Point> case2) {
         // Start of user code for constructor Base
         super(pv);
         this.bois = bois;
@@ -107,6 +117,8 @@ public class Base extends Agent  {
         this.nom = nom;
         this.carte = c;
         this.unites = new ArrayList<Unite>();
+        this.maCase = case2;
+        this.maCase.ajouterUnite(this);
         // End of user code
     }
 
@@ -140,22 +152,6 @@ public class Base extends Agent  {
      */
     public void setNourriture(int nourriture) {
         this.nourriture = nourriture;
-    }
-
-    /**
-     * Return pv.
-     * @return pv
-     */
-    public int getPv() {
-        return pv;
-    }
-
-    /**
-     * Set a value to attribute pv.
-     * @param pv
-     */
-    public void setPv(int pv) {
-        this.pv = pv;
     }
 
     /**
@@ -240,8 +236,63 @@ public class Base extends Agent  {
      */
     public void jouer() {
         // Start of user code for method jouer
-
+        attaquer();
         // End of user code
+    }
+
+    /**
+     * Stratégie d'attaque
+     *
+     */
+    public void attaquer() {
+        ArrayList<Case<Point>> cases = jeu.getCasesBases(this);
+        // Calcul de la base la plus proche
+        Case<Point> cible = calculerBasePlusProche(cases);
+        if(cible != null) {
+            // Demander aux attaquants de se diriger vers la cible
+            ArrayList<Attaquant> attaquants = new ArrayList<Attaquant>();
+            for(Unite u : getUnites()) {
+                String className = u.getClass().getSimpleName();
+                if(className.equals("Attaquant")) {
+                    attaquants.add((Attaquant) u);
+                }
+            }
+            final int width = carte.getLargeur();
+            final int height = carte.getHauteur();
+            int i = 0;
+            for(Attaquant at : attaquants) {
+                if(i==0) {
+                    System.out.println(at.getBase().getNom());
+                    System.out.println(i);
+                    System.out.println(at.getCase().getIndex().getX());
+                    System.out.println(at.getCase().getIndex().getY());
+                }
+                if(at.reagir2()) {
+                    at.reagir();
+                    System.out.println("On attaque");
+                }
+                else {
+                    final AEtoile<Point> astart = new AEtoile<Point>(successorComputer, fabriqueNoeud);
+                    final List<Point> result = astart.compute(at.getCase().getIndex(), cible.getIndex());
+                    if(result.size() > 1) {
+                        Case<Point> caseCible = (Case<Point>)carte.getMap().get(result.get(1));
+                        at.seDeplacer(caseCible);
+                    }
+                    else {
+                        System.out.println("Pas de déplacement possible");
+                    }
+                }
+                if(i==0) {
+                    System.out.println("Après");
+                    System.out.println(at.getCase().getIndex().getX());
+                    System.out.println(at.getCase().getIndex().getY());
+                }
+                i++;
+            }
+        }
+        else {
+            System.out.println("Plus de cible");
+        }
     }
 
     /**
@@ -249,8 +300,6 @@ public class Base extends Agent  {
      */
     @Override
     public void reagir() {
-
-
         final int width = carte.getLargeur();
         final int height = carte.getHauteur();
         final AEtoile<Point> astart = new AEtoile<Point>(successorComputer, fabriqueNoeud);
@@ -289,6 +338,52 @@ public class Base extends Agent  {
             result.append("___");
         }
         System.out.println(result);
+    }
+
+    /**
+     * Return maCase.
+     * @return maCase
+     */
+    public Case<Point> getCase() {
+        return this.maCase;
+    }
+
+    /**
+     * Return maCase.
+     * @return maCase
+     */
+    public Case<Point> calculerBasePlusProche(ArrayList<Case<Point>> cases) {
+        double distance = Double.MAX_VALUE;
+        Case<Point> resultat = null;
+        for(Case<Point> c : cases) {
+            int posX = (int) this.maCase.getIndex().getX();
+            int posY = (int) this.maCase.getIndex().getY();
+            int cX = (int) c.getIndex().getX();
+            int cY = (int) c.getIndex().getY();
+            double temp = Math.abs(posX-cX) + Math.abs(posY-cY);
+            if(distance > temp) {
+                distance = temp;
+                resultat = c;
+            }
+        }
+        return resultat;
+    }
+
+    public void subirDegats(int pvRestant) {
+        if(pvRestant <= 0) {
+            jeu.removeBases(this);
+            maCase.retirerUnite(this);
+        }
+
+        else
+            this.pv = pvRestant;
+    }
+
+    public Base getBase() {
+        return this;
+    }
+    public int getPvRestant() {
+        return pv;
     }
 
     // Start of user code to add methods for Base

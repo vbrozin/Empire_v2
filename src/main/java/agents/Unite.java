@@ -23,7 +23,7 @@ import java.util.HashSet;
 *
 */
 
-public class Unite {
+public class Unite implements IAgent{
     protected int pvRestant;
     protected int pointAttaque;
     protected double porteeAttaque;
@@ -176,10 +176,10 @@ public class Unite {
      *
      * @return ret
      */
-    public Unite calculerUnitePlusProche() {
+    public IAgent calculerUnitePlusProche() {
         // Start of user code for method calculerUnitePlusProche
 
-        Unite ret = null;
+        IAgent ret = null;
         int i=1,j=0,tailleC=0;
         int posX = (int) this.maCase.getIndex().getX();
         int posY = (int) this.maCase.getIndex().getY();
@@ -223,11 +223,11 @@ public class Unite {
      *
      * @param cible
      */
-    public void attaquer(Unite cible) {
+    public void attaquer(IAgent cible) {
         // Start of user code for method attaquer
         if(calculerDistance(cible) <= porteeAttaque) {
             System.out.println(this.maBase.getNom() + " attaque " + cible.getBase().getNom() + "  pvRestant = " + (cible.getPvRestant()-pointAttaque));
-            cible.subirDegat(cible.getPvRestant() - pointAttaque);
+            cible.subirDegats(cible.getPvRestant() - pointAttaque);
         }
         // End of user code
     }
@@ -239,7 +239,7 @@ public class Unite {
      * @param ennemie
      * @return ret
      */
-    public double calculerDistance(Unite ennemie) {
+    public double calculerDistance(IAgent ennemie) {
         // Start of user code for method calculerDistance
         double ret = 0;
         int posX = (int) this.maCase.getIndex().getX();
@@ -263,14 +263,13 @@ public class Unite {
 
     // Start of user code to add methods for Unite
     private boolean verifierCase(Point p) {
-        if(p.getX() >= 0 && p.getY() >= 0 && p.getX() < map.getHauteur() && p.getY() < map.getLargeur()) {
+        if(p.getX() >= 0 && p.getY() >= 0 && p.getX() < map.getLargeur() && p.getY() < map.getHauteur()) {
 
             if(map.getCase(p).estLibre() && map.getCase(p).getUnites().size() != 0){
-
-                System.out.println(map.getCase(p).getUnite(0).getBase().getNom() + " trouvé");
                 if(map.getCase(p).getUnite(0).getBase() == this.maBase)
                     return false;
                 else
+                    //System.out.println(map.getCase(p).getUnite(0).getBase().getNom() + " trouvé");
                     return true;
             }
 
@@ -281,11 +280,15 @@ public class Unite {
             return false;
     }
 
-    public void subirDegat(int pvRestant) {
+    public void subirDegats(int pvRestant) {
         if(pvRestant <= 0)
             map.detruireUnite(this);
         else
             this.pvRestant = pvRestant;
+    }
+
+    public void reagir() {
+
     }
 
     // End of user code

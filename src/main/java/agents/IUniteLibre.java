@@ -39,7 +39,7 @@ public interface IUniteLibre {
      *
      * @param cible
      */
-    public void suivreUnite(Unite cible);
+    public void suivreUnite(IAgent cible);
 
 
 

@@ -21,7 +21,7 @@ import java.awt.Point;
 *
 */
 
-public class Attaquant extends Unite implements IUniteLibre, IAgent {
+public class Attaquant extends Unite implements IUniteLibre {
     private int vitesse;
     private Carte carte;
 
@@ -62,7 +62,7 @@ public class Attaquant extends Unite implements IUniteLibre, IAgent {
     */
     @Override
     public void seDeplacer(Case caseLibre) {
-        if(caseLibre.estLibre()) {
+        if(caseLibre != null && caseLibre.estLibre()) {
             maCase.retirerUnite(this);
             maCase = caseLibre;
             maCase.ajouterUnite(this);
@@ -75,8 +75,7 @@ public class Attaquant extends Unite implements IUniteLibre, IAgent {
      *
      * @param cible
      */
-    @Override
-    public void suivreUnite(Unite cible) {
+    public void suivreUnite(IAgent cible) {
         int cibleX = (int) cible.getCase().getIndex().getX();
         int cibleY = (int) cible.getCase().getIndex().getY();
         int myX = (int) maCase.getIndex().getX();
@@ -106,15 +105,31 @@ public class Attaquant extends Unite implements IUniteLibre, IAgent {
      * On cherche une unite ennemie dans la portee de vision, si il y en a une,
      * on verifit la distance est on attaque ou on se deplace vers l'unite ennemie selon le cas.
      */
-    @Override
     public void reagir() {
-        Unite ennemie = calculerUnitePlusProche();
+        IAgent ennemie = calculerUnitePlusProche();
         if(ennemie != null) {
             if(calculerDistance(ennemie) <= porteeAttaque)
                 attaquer(ennemie);
             else
                 suivreUnite(ennemie);
         }
+    }
+
+    /**
+     * Description of the method reagir.
+     * On cherche une unite ennemie dans la portee de vision, si il y en a une,
+     * on verifit la distance est on attaque ou on se deplace vers l'unite ennemie selon le cas.
+     */
+    public boolean reagir2() {
+        IAgent ennemie = calculerUnitePlusProche();
+        boolean b = false;
+        if(ennemie != null) {
+            if(calculerDistance(ennemie) <= porteeAttaque)
+                return true;
+            else
+                return false;
+        }
+        return b;
     }
 
 

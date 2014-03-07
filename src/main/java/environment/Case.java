@@ -12,7 +12,10 @@ package environment;
 
 // End of user code
 
+import agents.IAgent;
 import agents.Unite;
+import agents.Base;
+import sun.jvm.hotspot.runtime.ia64.IA64CurrentFrameGuess;
 
 import java.util.*;
 
@@ -23,7 +26,6 @@ import java.util.*;
 
 public class Case<T>{
 
-
     /** La ressource s'il s'agit d'une case ressource*/
     private Ressource ressource;
     /** vrai s'il s'agit d'un obstacle*/
@@ -31,7 +33,7 @@ public class Case<T>{
     /** Le nombre maximum d'unités dans une case*/
     private final int capacite = 1;
     /** unités dans la case*/
-    private ArrayList<Unite> unites;
+    private ArrayList<IAgent> unites;
     /** l'étiquette de la case*/
     private T index;
     // End of user code
@@ -42,7 +44,7 @@ public class Case<T>{
     public Case(final T index, final boolean obstacleBoolean) {
         this.index = index;
         this.obstacle = obstacleBoolean;
-        unites = new ArrayList<Unite>();
+        unites = new ArrayList<IAgent>();
     }
 
     /**
@@ -69,17 +71,18 @@ public class Case<T>{
         return obstacle;
     }
 
+
     /**
      * Ajoute une unité dans la case
      */
-    public void ajouterUnite(Unite unite) {
+    public void ajouterUnite(IAgent unite) {
         unites.add(unite);
     }
 
     /**
      * Retire l'unité dans la case
      */
-    public void retirerUnite(Unite unite) {
+    public void retirerUnite(IAgent unite) {
         unites.remove(unite);
     }
 
@@ -93,14 +96,14 @@ public class Case<T>{
     /**
      * Retourne les unités contenues dans la case
      */
-    public ArrayList<Unite> getUnites() {
+    public ArrayList<IAgent> getUnites() {
        return unites;
     }
 
     /**
      * Retourne la ième unité (0 à n)
      */
-    public Unite getUnite(int i) {
+    public IAgent getUnite(int i) {
         return unites.get(i);
     }
 
