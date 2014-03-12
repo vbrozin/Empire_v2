@@ -285,6 +285,44 @@ public class Base extends Agent implements IAgent  {
         }
     }
 
+     /**
+     * Stratégie de recolter
+     *
+     */
+    public void recolter() {
+        ArrayList<Case<Point>> cases = jeu.getCasesBases(this);
+        // Calcul de ressource la plus proche
+
+
+        Case<Point> bois = calculerRessourcePlusProche(cases, true);
+        Case<Point> nourriture = calculerRessourcePlusProche(cases,false);
+
+
+        if(bois != null || nourriture != null) {
+            // Demander aux recolteur de lancer la procedure de recolte (leur réagir)
+            ArrayList<Recolteur> recolteur = new ArrayList<Recolteur>();
+            for(Unite u : getUnites()) {
+                String className = u.getClass().getSimpleName();
+                if(className.equals("Recolteur")) {
+                    recolteur.add((Recolteur) u);
+                }
+            }
+            final int width = carte.getLargeur();
+            final int height = carte.getHauteur();
+            int i = 0;
+            for(Recolteur rec : recolteur) {
+                rec.reagir(bois);
+                // ou nourriture faut trouver un moyen de pas les faire changer de ressource cible en cours de route.
+                // soit faire 2 fct récolterBois et recolterNourriture
+                // soit recolterPlusProche
+                // a savoir qu'ils rentrent pas à la base tant qu'ils sont pas plein donc quand la ressource s'épuisent, le calcul de ressourcePlus proche change et l'unité va partir ailleur
+            }
+        }
+    }
+
+
+
+
     /**
      * Description of the method reagir.
      */
@@ -378,6 +416,23 @@ public class Base extends Agent implements IAgent  {
     }
 
     // Start of user code to add methods for Base
+    /**
+     * Retourne la case ou doit se deplacer une unité desirant se rendre à la case destination
+     * @return res
+     */
+    public Case<Point> calculerChemin(Case<Point> destination, Case<Point> caseUnite) {
+        Case<Point> res = caseUnite;
+
+        final AEtoile<Point> astart = new AEtoile<Point>(successorComputer, fabriqueNoeud);
+        final List<Point> result = astart.compute(destination.getIndex(), caseUnite.getIndex());
+        if(result.size() > 1) {
+                 res = (Case<Point>)carte.getMap().get(result.get(1));
+        }
+        else {
+                System.out.println("Pas de déplacement possible");
+            }
+        return res;
+    }
 
     // End of user code
 }

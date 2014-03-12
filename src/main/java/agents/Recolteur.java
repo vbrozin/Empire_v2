@@ -11,11 +11,13 @@ package agents;
 
 
 // End of user code
-
+import java.awt.Point;
 import environment.Carte;
 import environment.Case;
 import environment.Ressource;
 import environment.TypeRessource;
+
+import java.util.Iterator;
 
 /**
 * Description of the class Recolteur.
@@ -146,67 +148,6 @@ public class Recolteur extends Unite implements IUniteLibre {
 
 
     /**
-     * Description of the method recolter.
-     *
-     * @param ressource
-     */
-    public void recolter(Ressource ressource) {
-        // Start of user code for method recolter
-        // S'il ne reste plus qu'une petite quantite, on vide la ressource
-        int n = ressource.getQuantite();
-        // Sinon, on récolte normalement à une certaine vitesse
-        if (n > vitesseRecolte)
-            n = vitesseRecolte;
-
-
-        if(ressource.getTypeRessource() == TypeRessource.BOIS)
-            if(nourriture + bois + n > capaciteTotal)
-                bois = capaciteTotal - nourriture;
-            else
-                bois += n;
-        else
-            if(nourriture + bois + n > capaciteTotal)
-                nourriture = capaciteTotal - bois;
-            else
-                nourriture += n;
-
-        // On retire la quantite de ressource récoltée
-        ressource.decrementerQuantite(n);
-        // End of user code
-    }
-
-    /**
-     * Description of the method revenirBase.
-     *
-     */
-    public void revenirBase() {
-        // Start of user code for method revenirBase
-
-        // End of user code
-    }
-
-    /**
-     * Description of the method deposer.
-     *
-     */
-    public void deposer() {
-        // Start of user code for method deposer
-        maBase.incrementerRessource(bois, nourriture);
-        bois = nourriture = 0;
-        // End of user code
-    }
-
-    /**
-     * Description of the method reagirRecolte.
-     *
-     */
-    public void reagirRecolte() {
-        // Start of user code for method reagirRecolte
-
-        // End of user code
-    }
-
-    /**
      * Description of the method seDeplacer.
      *
      * @param caseLibre
@@ -228,9 +169,88 @@ public class Recolteur extends Unite implements IUniteLibre {
 
     /**
      * Description of the method reagir.
+     * Si l'unite n'est pas pleine, elle va essayer de recolter sinon elle rentre à la base
      */
-    public void reagir() {
+    public void reagir(Case<Point> ressource) {
+        if(bois + nourriture < capaciteTotal)
+            reagirRecolte(ressource);
+        else
+            revenirBase();
+    }
 
+    /**
+     * Description of the method reagirRecolte.
+     * Quand l'unite n'est pas pleine, soit elle recolte soit elle se dirige vers un point de recolte
+     *
+     *@param ressource
+     */
+    public void reagirRecolte(Case<Point> ressource) {
+        // Start of user code for method reagirRecolte
+        if(calculerDistance(ressource) <= porteeRecolte)
+            recolter(ressource.getRessource());
+        else {
+            Case<Point> next = maBase.calculerChemin(ressource, maCase);
+            seDeplacer(next);
+        }
+        // End of user code
+    }
+
+    /**
+     * Description of the method recolter.
+     *
+     * @param ressource
+     */
+    public void recolter(Ressource ressource) {
+        // Start of user code for method recolter
+        // S'il ne reste plus qu'une petite quantite, on vide la ressource
+        int n = ressource.getQuantite();
+        // Sinon, on récolte normalement à une certaine vitesse
+        if (n > vitesseRecolte)
+            n = vitesseRecolte;
+
+
+        if(ressource.getTypeRessource() == TypeRessource.BOIS)
+            if(nourriture + bois + n > capaciteTotal)
+                bois = capaciteTotal - nourriture;
+            else
+                bois += n;
+        else
+        if(nourriture + bois + n > capaciteTotal)
+            nourriture = capaciteTotal - bois;
+        else
+            nourriture += n;
+
+        // On retire la quantite de ressource récoltée
+        ressource.decrementerQuantite(n);
+        // End of user code
+    }
+
+    /**
+     * Description of the method revenirBase.
+     * Si l'unité est à porter de la base, on dépose les ressource
+     * Sinon, elle se dirige vers la base
+     *
+     */
+    public void revenirBase() {
+        // Start of user code for method revenirBase
+        if(calculerDistance(maBase.getCase()) <= porteeRecolte)
+            deposer();
+        else {
+            Case<Point> next = maBase.calculerChemin(maBase.getCase(), maCase);
+            seDeplacer(next);
+        }
+        // End of user code
+    }
+
+    /**
+     * Description of the method deposer.
+     *L'unité dépose les ressources dans la base
+     */
+    public void deposer() {
+        // Start of user code for method deposer
+        maBase.incrementerRessource(bois, nourriture);
+        bois = nourriture = 0;
+        // End of user code
     }
 
     // Start of user code to add methods for Recolteur

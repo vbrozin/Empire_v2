@@ -55,6 +55,14 @@ public class Case<T>{
     }
 
     /**
+     * Recupère la ressource
+     */
+    public Ressource getRessource() {
+        return ressource;
+    }
+
+
+    /**
      * Vrai si la case est occupée
      */
     public boolean estLibre() {

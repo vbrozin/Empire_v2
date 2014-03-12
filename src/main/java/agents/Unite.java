@@ -252,6 +252,25 @@ public class Unite implements IAgent{
     }
 
     /**
+     * Description of the method calculerDistance.
+     * Calcul la distance entre l'Unite et une unite ennemie par Pythagore
+     *
+     * @param ennemie
+     * @return ret
+     */
+    public double calculerDistance(Case<Point> c) {
+        // Start of user code for method calculerDistance
+        double ret = 0;
+        int posX = (int) this.maCase.getIndex().getX();
+        int posY = (int) this.maCase.getIndex().getY();
+        int cX = (int) c.getIndex().getX();
+        int cY = (int) c.getIndex().getY();
+        ret = Math.sqrt(Math.pow(posX-cX,2) + Math.pow(posY-cY,2));
+        return ret;
+        // End of user code
+    }
+
+    /**
      * Description of the method guetter.
      *
      */

@@ -33,6 +33,7 @@ public interface IUniteLibre {
      */
     public void seDeplacer(Case caseLibre);
 
+
     /**
      *  Description of the method seDeplacer.
      *
