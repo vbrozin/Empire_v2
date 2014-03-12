@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2b206447-f9a8-4f33-9e3c-e1c4fdad0239" name="Default" comment="Test de réagir de l'attaquant&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/agents/Base.java" afterPath="$PROJECT_DIR$/src/main/java/agents/Base.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/environment/Case.java" afterPath="$PROJECT_DIR$/src/main/java/environment/Case.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Empire_v2.iml" afterPath="$PROJECT_DIR$/Empire_v2.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/agents/IUniteLibre.java" afterPath="$PROJECT_DIR$/src/main/java/agents/IUniteLibre.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/agents/Recolteur.java" afterPath="$PROJECT_DIR$/src/main/java/agents/Recolteur.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/agents/Unite.java" afterPath="$PROJECT_DIR$/src/main/java/agents/Unite.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+    <list default="true" id="2b206447-f9a8-4f33-9e3c-e1c4fdad0239" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Empire_v2.iws" />
@@ -94,7 +87,7 @@
       <file leaf-file-name="Case.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/environment/Case.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="60" column="24" selection-start="1339" selection-end="1339" vertical-scroll-proportion="0.29637527" vertical-offset="427" max-vertical-offset="1665">
+            <state line="60" column="24" selection-start="1339" selection-end="1339" vertical-scroll-proportion="0.75159913" vertical-offset="0" max-vertical-offset="1665">
               <folding>
                 <element signature="e#1313#1314#0" expanded="true" />
                 <element signature="e#1345#1346#0" expanded="true" />
@@ -678,7 +671,11 @@
       <created>1393773091811</created>
       <updated>1393773091811</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Rajout de récolteur&#10;">
+      <created>1394643016873</created>
+      <updated>1394643016873</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -724,7 +721,8 @@
     </option>
     <MESSAGE value="Initial commit&#10;" />
     <MESSAGE value="Unite remplis&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Unite remplis&#10;" />
+    <MESSAGE value="Rajout de récolteur&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Rajout de récolteur&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1124,7 +1122,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/environment/Case.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="24" selection-start="1339" selection-end="1339" vertical-scroll-proportion="0.29637527" vertical-offset="427" max-vertical-offset="1665">
+        <state line="60" column="24" selection-start="1339" selection-end="1339" vertical-scroll-proportion="0.75159913" vertical-offset="0" max-vertical-offset="1665">
           <folding>
             <element signature="e#1313#1314#0" expanded="true" />
             <element signature="e#1345#1346#0" expanded="true" />
