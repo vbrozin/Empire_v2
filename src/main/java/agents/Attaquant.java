@@ -22,8 +22,8 @@ import java.awt.Point;
 */
 
 public class Attaquant extends Unite implements IUniteLibre {
-    private int vitesse;
     private Carte carte;
+    private double porteeVision;
 
     // Start of user code to add fields for Attaquant
 
@@ -32,10 +32,9 @@ public class Attaquant extends Unite implements IUniteLibre {
     /**
      * Constructor.
      */
-    public Attaquant(Base b, int pv, int pt, int pa, int t, int va, double po, Case<Point> c, Carte ca, int v) {
+    public Attaquant(Base b, int pv, int pt, int pa, double po, Case<Point> c, Carte ca) {
     // Start of user code for constructor Unite
-    super(b, pv, pt, pa, t, va, po, c, ca);
-    this.vitesse = v;
+    super(b, pv, pt, pa, po, c, ca);
     // End of user code
     }
 

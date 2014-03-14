@@ -26,11 +26,8 @@ import java.util.Iterator;
 
 public class Recolteur extends Unite implements IUniteLibre {
     private int capaciteTotal;
-    private int vitesseDeplacement;
-    private int vitesseRecolte;
     private int bois;
     private int nourriture;
-    private double porteeRecolte;
 
     // Start of user code to add fields for Recolteur
 
@@ -39,14 +36,13 @@ public class Recolteur extends Unite implements IUniteLibre {
     /**
      * Constructor.
      */
-    public Recolteur(Base b, int pv, int pt, int pa, int t, int va, double po, Case c, Carte ca,
-                     int capa, int vitD, int vitR, double poR) {
+    public Recolteur(Base b, int pv, int pt, int pa, double po, Case c, Carte ca,
+                     int capa) {
         // Start of user code for constructor Unite
-        super(b, pv, pt, pa, t, va, po, c, ca);
+        super(b, pv, pt, pa, po, c, ca);
         this.capaciteTotal = capa;
-        this.vitesseDeplacement = vitD;
-        this.vitesseRecolte = vitR;
-        this.porteeRecolte = poR;
+        bois = 0;
+        nourriture=0;
         // End of user code
     }
 
@@ -85,7 +81,7 @@ public class Recolteur extends Unite implements IUniteLibre {
      */
     public void reagirRecolte(Case<Point> caseRessource) {
         // Start of user code for method reagirRecolte
-        if(calculerDistance(caseRessource) <= porteeRecolte)
+        if(calculerDistance(caseRessource) <= porteeAttaque)
             recolter(caseRessource.getRessource());
         else {
             Case<Point> next = maBase.calculerChemin(maCase, caseRessource);
@@ -104,8 +100,8 @@ public class Recolteur extends Unite implements IUniteLibre {
         // S'il ne reste plus qu'une petite quantite, on vide la ressource
         int n = ressource.getQuantite();
         // Sinon, on récolte normalement à une certaine vitesse
-        if (n > vitesseRecolte)
-            n = vitesseRecolte;
+        if (n > pointAttaque)
+            n = pointAttaque;
 
 
         if(ressource.getTypeRessource() == TypeRessource.BOIS)
@@ -132,7 +128,7 @@ public class Recolteur extends Unite implements IUniteLibre {
      */
     public void revenirBase() {
         // Start of user code for method revenirBase
-        if(calculerDistance(maBase.getCase()) <= porteeRecolte)
+        if(calculerDistance(maBase.getCase()) <= porteeAttaque)
             deposer();
         else {
             Case<Point> next = maBase.calculerChemin(maBase.getCase(), maCase);

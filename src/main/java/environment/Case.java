@@ -14,8 +14,6 @@ package environment;
 
 import agents.IAgent;
 import agents.Unite;
-import agents.Base;
-import sun.jvm.hotspot.runtime.ia64.IA64CurrentFrameGuess;
 
 import java.util.*;
 

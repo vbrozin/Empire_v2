@@ -29,9 +29,9 @@ public class Defenseur extends Unite{
     /**
      * Constructor.
      */
-    public Defenseur(Base b, int pv, int pt, int pa, int t, int va, double po, Case c, Carte ca) {
+    public Defenseur(Base b, int pv, int pt, int pa, double po, Case c, Carte ca) {
         // Start of user code for constructor Unite
-        super(b, pv, pt, pa, t, va, po, c, ca);
+        super(b, pv, pt, pa, po, c, ca);
         // End of user code
     }
 

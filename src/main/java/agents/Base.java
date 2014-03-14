@@ -9,6 +9,7 @@ package agents;
 
 // Start of user code to add imports for Base
 
+import data.Constantes;
 import environment.*;
 
 import java.awt.Point;
@@ -25,7 +26,7 @@ import java.util.List;
 *
 */
 
-public class Base extends Agent implements IAgent  {
+public class Base extends Agent implements IAgent, Constantes {
     private int bois;
     private int nourriture;
     private List<Unite> unites;
@@ -121,6 +122,54 @@ public class Base extends Agent implements IAgent  {
         this.maCase.ajouterUnite(this);
         // End of user code
     }
+
+    public Case<Point> getPositionDePop() {
+        Case res = null;
+
+        return res;
+    }
+
+    public Case<Point> getPositionDef() {
+        Case res = null;
+
+        return res;
+    }
+    public void creerMele() {
+        if(nourriture >= MELE_COUT) {
+            nourriture -= MELE_COUT;
+            Case<Point> cas = getPositionDePop();
+            Attaquant at = new Attaquant(this, MELE_PV, MELE_AT, MELE_P_AT, MELE_P_V, cas, carte);
+            unites.add(at);
+        }
+    }
+
+    public void creerArcher() {
+        if(nourriture >= ARCHE_COUT) {
+            nourriture -= ARCHE_COUT;
+            Case<Point> cas = getPositionDePop();
+            Attaquant at = new Attaquant(this, ARCHE_PV, ARCHE_AT, ARCHE_P_AT, ARCHE_P_V, cas, carte);
+            unites.add(at);
+        }
+    }
+
+     public void creerRecolteur() {
+        if(nourriture >= RECOL_COUT) {
+            nourriture -= RECOL_COUT;
+            Case<Point> cas = getPositionDePop();
+            Recolteur at = new Recolteur(this, RECOL_PV, RECOL_AT, RECOL_P_R, 0, cas, carte, RECOL_CAP);
+            unites.add(at);
+        }
+    }
+
+    public void creerDefenseur() {
+        if(bois >= DEF_COUT) {
+            bois -= DEF_COUT;
+            Case<Point> cas = getPositionDef();
+            Defenseur at = new Defenseur(this, DEF_PV, DEF_AT, DEF_P_AT, DEF_P_V, cas, carte);
+            unites.add(at);
+        }
+    }
+
 
     /**
      * Return unites.

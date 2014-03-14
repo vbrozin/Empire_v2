@@ -27,8 +27,6 @@ public class Unite implements IAgent{
     protected int pvRestant;
     protected int pointAttaque;
     protected double porteeAttaque;
-    protected int taille;
-    protected int vitesseAttaque;
     protected double porteeVision;
 
     // Start of user code to add fields for Unite
@@ -40,15 +38,13 @@ public class Unite implements IAgent{
     /**
      * Constructor.
      */
-    public Unite(Base b, int pv, int pt, int pa, int t, int va, double po, Case<Point> c, Carte ca) {
+    public Unite(Base b, int pv, int pt, int pa, double po, Case<Point> c, Carte ca) {
         // Start of user code for constructor Unite
         super();
         this.maBase = b;
         this.pvRestant = pv;
         this.pointAttaque = pt;
         this.porteeAttaque = pa;
-        this.taille = t;
-        this.vitesseAttaque = va;
         this.porteeVision = po;
         this.maCase = c;
         this.map = ca;
@@ -107,37 +103,6 @@ public class Unite implements IAgent{
         this.porteeAttaque = porteeAttaque;
     }
 
-    /**
-     * Return taille.
-     * @return taille
-     */
-    public int getTaille() {
-        return taille;
-    }
-
-    /**
-     * Set a value to attribute taille.
-     * @param taille
-     */
-    public void setTaille(int taille) {
-        this.taille = taille;
-    }
-
-    /**
-     * Return vitesseAttaque.
-     * @return vitesseAttaque
-     */
-    public int getVitesseAttaque() {
-        return vitesseAttaque;
-    }
-
-    /**
-     * Set a value to attribute vitesseAttaque.
-     * @param vitesseAttaque
-     */
-    public void setVitesseAttaque(int vitesseAttaque) {
-        this.vitesseAttaque = vitesseAttaque;
-    }
 
     /**
      * Return porteeVision.
@@ -255,7 +220,7 @@ public class Unite implements IAgent{
      * Description of the method calculerDistance.
      * Calcul la distance entre l'Unite et une unite ennemie par Pythagore
      *
-     * @param ennemie
+     * @param c
      * @return ret
      */
     public double calculerDistance(Case<Point> c) {
