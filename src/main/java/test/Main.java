@@ -26,7 +26,7 @@ public class Main {
 
         ArrayList<Base> bases = new ArrayList<Base>();
         Case<Point> maCase = c.getCase(new Point(0,0));
-        Base b1 = new Base(20,20,50,"blue",c, c.getCase(new Point(0,0)));
+        /*Base b1 = new Base(20,20,50,"blue",c, c.getCase(new Point(0,0)));
         int x = c.getLargeur()-1;
         int y = c.getHauteur()-1;
         Base b2 = new Base(20,20,50,"red",c, c.getCase(new Point(x, y)));
@@ -43,7 +43,7 @@ public class Main {
         }
         System.out.println(t);
         System.out.println(b1.getUnites().size());
-        System.out.println(b2.getUnites().size());
+        System.out.println(b2.getUnites().size());*/
 
 
     }

@@ -50,8 +50,6 @@ public class Unite implements IAgent{
         this.map = ca;
         // ajout de l'unité dans sa case
         c.ajouterUnite(this);
-        // ajout de l'unite dans sa base
-        b.addUnites(this);
         // End of user code
     }
 

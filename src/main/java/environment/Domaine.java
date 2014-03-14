@@ -1,6 +1,7 @@
 package environment;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 /**
@@ -8,8 +9,8 @@ import java.util.HashSet;
  */
 public class Domaine {
     private Case<Point> caseBase;
-    private HashSet<Case<Point>> casesUnitesLibres = new HashSet<Case<Point>>();
-    private HashSet<Case<Point>> casesDefenses = new  HashSet<Case<Point>>();
+    private ArrayList<Case<Point>> casesUnitesLibres = new ArrayList<Case<Point>>();
+    private ArrayList<Case<Point>> casesDefenses = new  ArrayList<Case<Point>>();
 
     public Domaine() {
     }
@@ -22,7 +23,7 @@ public class Domaine {
         this.caseBase = caseBase;
     }
 
-    public HashSet<Case<Point>> getCasesUnitesLibres() {
+    public ArrayList<Case<Point>> getCasesUnitesLibres() {
         return casesUnitesLibres;
     }
 
@@ -30,7 +31,7 @@ public class Domaine {
         casesUnitesLibres.add(cas);
     }
 
-    public HashSet<Case<Point>> getCasesDefenses() {
+    public ArrayList<Case<Point>> getCasesDefenses() {
         return casesDefenses;
     }
 

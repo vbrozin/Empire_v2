@@ -29,7 +29,7 @@ public class Case<T>{
     /** vrai s'il s'agit d'un obstacle*/
     private boolean obstacle;
     /** Le nombre maximum d'unités dans une case*/
-    private final int capacite = 1;
+    private final int capacite = 2;
     /** unités dans la case*/
     private ArrayList<IAgent> unites;
     /** l'étiquette de la case*/
@@ -65,7 +65,7 @@ public class Case<T>{
      */
     public boolean estLibre() {
         if(!obstacle)
-            return unites.size() <= capacite;
+            return unites.size() < capacite;
         else
             return false;
     }

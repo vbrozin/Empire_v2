@@ -121,32 +121,37 @@ public class Base extends Agent implements IAgent, Constantes {
     }
 
     public Case<Point> getPositionDePop() {
-        Case<Point> res = null,temp = null;
-        boolean trouve=false;
-        Iterator<Case<Point>> i= domaine.getCasesUnitesLibres().iterator();
-        while(i.hasNext() && trouve==false) {
-            temp = i.next();
-            if(temp.estLibre()) {
-                res = temp;
-                trouve = true;
+        Case<Point> res = null;
+        ArrayList<Case<Point>> cases = new ArrayList<Case<Point>>();
+        for(Case<Point> c : domaine.getCasesUnitesLibres()) {
+            if(c.estLibre()) {
+                cases.add(c);
             }
+        }
+        int n = cases.size();
+        if(n > 0) {
+            int number = (int)(Math.random()*n);
+            res = cases.get(number);
         }
         return res;
     }
 
     public Case<Point> getPositionDef() {
-        Case<Point> res = null,temp = null;
-        boolean trouve=false;
-        Iterator<Case<Point>> i= domaine.getCasesDefenses().iterator();
-        while(i.hasNext() && trouve==false) {
-            temp = i.next();
-            if(temp.estLibre()) {
-                res = temp;
-                trouve = true;
+        Case<Point> res = null;
+        ArrayList<Case<Point>> cases = new ArrayList<Case<Point>>();
+        for(Case<Point> c : domaine.getCasesDefenses()) {
+            if(c.estLibre()) {
+                cases.add(c);
             }
+        }
+        int n = cases.size();
+        if(n > 0) {
+            int number = (int)(Math.random()*n);
+            res = cases.get(number);
         }
         return res;
     }
+
     public void creerMele() {
         if(nourriture >= MELE_COUT) {
             Case<Point> cas = getPositionDePop();
@@ -357,10 +362,8 @@ public class Base extends Agent implements IAgent, Constantes {
                     recolteurs.add((Recolteur) u);
                 }
             }
-            final int width = carte.getLargeur();
-            final int height = carte.getHauteur();
-            int i = 0;
             for(Recolteur rec : recolteurs) {
+
                 rec.reagir(bois);
                 // ou nourriture faut trouver un moyen de pas les faire changer de ressource cible en cours de route.
                 // soit faire 2 fct récolterBois et recolterNourriture
@@ -474,7 +477,7 @@ public class Base extends Agent implements IAgent, Constantes {
         Case<Point> res = caseUnite;
 
         final AEtoile<Point> astart = new AEtoile<Point>(successorComputer, fabriqueNoeud);
-        final List<Point> result = astart.compute(destination.getIndex(), caseUnite.getIndex());
+        final List<Point> result = astart.compute(caseUnite.getIndex(), destination.getIndex());
         if(result.size() > 1) {
                  res = (Case<Point>)carte.getMap().get(result.get(1));
         }

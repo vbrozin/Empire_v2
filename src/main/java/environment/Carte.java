@@ -31,8 +31,8 @@ public class Carte {
     private Map<Point, Case> map = new HashMap<Point, Case>();
     private HashSet<Point> points = new HashSet<Point>();
     private Map<Ressource, Case> ressources = new HashMap<Ressource, Case>();
-    private HashSet<Case> casesBases = new HashSet<Case>();
-    private HashSet<Domaine> domaines = new HashSet<Domaine>();
+    private ArrayList<Domaine> domaines = new ArrayList<Domaine>();
+
 
     /**
      * Constructor.
@@ -59,7 +59,7 @@ public class Carte {
                 // Création des cases libres
                 if(" ".equals(matrix[i][j])) {
                     c = new Case(p, false);
-                    c2 = new Case(p, false);
+                    c2 = new Case(p2, false);
                 }
 
                 else {
@@ -71,36 +71,40 @@ public class Carte {
                         if("n".equals(matrix[i][j]))
                             type = TypeRessource.NOURRITURE;
                         Ressource r = new Ressource(1000, type);
-                        c = new Case(p, false);
-                        c2 = new Case(p, false);
-                        c.ajouterRessource(r);
-                        c2.ajouterRessource(r);
-                    }
-                    if("a".equals(matrix[i][j]) || "b".equals(matrix[i][j]) || "c".equals(matrix[i][j]) ){
+                        Ressource r2 = new Ressource(1000, type);
                         c = new Case(p, false);
                         c2 = new Case(p2, false);
-                        if("a".equals(matrix[i][j])) {
-                            dom1.addCasesDefenses(c);
-                            dom2.addCasesDefenses(c2);
-                        }
-                        if("b".equals(matrix[i][j])) {
-                            dom1.addCasesUnitesLibres(c);
-                            dom2.addCasesUnitesLibres(c2);
-                        }
-
-                        if("c".equals(matrix[i][j])) {
-                            dom1.setCaseBase(c);
-                            dom2.setCaseBase(c2);
-                            casesBases.add(c);
-                            casesBases.add(c2);
-                        }
-
+                        c.ajouterRessource(r);
+                        c2.ajouterRessource(r2);
+                        ressources.put(r, c);
+                        ressources.put(r2, c2);
                     }
-                    // Création des obstacles
                     else {
-                        c = new Case(p, true);
-                        c2 = new Case(p2, true);
+                        if("a".equals(matrix[i][j]) || "b".equals(matrix[i][j]) || "c".equals(matrix[i][j]) ){
+                            c = new Case(p, false);
+                            c2 = new Case(p2, false);
+                            if("a".equals(matrix[i][j])) {
+                                dom1.addCasesDefenses(c);
+                                dom2.addCasesDefenses(c2);
+                            }
+                            if("b".equals(matrix[i][j])) {
+                                dom1.addCasesUnitesLibres(c);
+                                dom2.addCasesUnitesLibres(c2);
+                            }
+
+                            if("c".equals(matrix[i][j])) {
+                                dom1.setCaseBase(c);
+                                dom2.setCaseBase(c2);
+                            }
+
+                        }
+                        // Création des obstacles
+                        else {
+                            c = new Case(p, true);
+                            c2 = new Case(p2, true);
+                        }
                     }
+
 
                 }
                 map.put(p, c);
@@ -173,6 +177,11 @@ public class Carte {
             cases.add(ressources.get(r));
         }
         return cases;
+    }
+
+
+    public ArrayList<Domaine> getDomaines() {
+        return domaines;
     }
     // End of user code
 }

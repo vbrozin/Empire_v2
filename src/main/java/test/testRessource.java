@@ -23,7 +23,7 @@ public class testRessource {
         };
         System.out.println(matrix[0].length + "  " + matrix.length);
         Carte c = new Carte(matrix);
-        Base b1 = new Base(20,20,50,"blue",c, c.getCase(new Point(0,0)));
+        /*Base b1 = new Base(20,20,50,"blue",c, c.getCase(new Point(0,0)));
         Base b2 = new Base(20,20,50,"red",c, c.getCase(new Point(c.getLargeur()-1,c.getHauteur()-1)));
         Recolteur u1 = new Recolteur(b1,20,5,1,5,c.getCase(new Point(4,4)),c,100);
         Recolteur u2 = new Recolteur(b1,20,5,1,5,c.getCase(new Point(4,4)),c,100);
@@ -34,6 +34,6 @@ public class testRessource {
             at.reagir();
             at = (Recolteur) b2.getUnites().get(0);
             at.reagir();
-        }
+        }*/
     }
 }

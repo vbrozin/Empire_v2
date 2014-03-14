@@ -131,7 +131,7 @@ public class Recolteur extends Unite implements IUniteLibre {
         if(calculerDistance(maBase.getCase()) <= porteeAttaque)
             deposer();
         else {
-            Case<Point> next = maBase.calculerChemin(maBase.getCase(), maCase);
+            Case<Point> next = maBase.calculerChemin(maCase, maBase.getCase());
             seDeplacer(next);
         }
         // End of user code
