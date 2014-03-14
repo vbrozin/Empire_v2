@@ -1,5 +1,6 @@
 package gui;
 
+import agents.Attaquant;
 import agents.Base;
 import environment.Carte;
 import environment.Case;
@@ -25,17 +26,18 @@ public class GridOfSprites extends JFrame implements ActionListener{
         new GridOfSprites();
     }
     BufferedImage[] sprites;
+    Image lune;
     JFrame window;
     MyCanvas canvas;
     int boxSize = 20,
-    width = 0,
-    height = 0;
+            width = 0,
+            height = 0;
     private Base b;
     private Base b2;
     private Carte c;
     final String[][] matrix = new String[][] {
-            { " ","|"," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," " },
-            { " ","|"," "," "," "," "," "," "," "," "," "," "," ","|"," "," "," "," " },
+            { " "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," " },
+            { " "," "," "," "," "," "," "," "," "," "," "," "," ","|"," "," "," "," " },
             { " ","|","|"," "," "," "," "," "," "," "," "," "," ","|"," "," "," "," " },
             { " "," ","|"," "," "," "," "," "," "," "," "," "," ","|"," "," "," "," " },
             { " "," ","|"," "," "," "," "," "," "," "," "," "," ","|"," "," "," "," " },
@@ -53,8 +55,15 @@ public class GridOfSprites extends JFrame implements ActionListener{
 
     public GridOfSprites() {
         Carte carte = new Carte(matrix);
-        Base b = new Base(20,20,50,"blue",c, c.getCase(new Point(0,0)));
-        Base b1 = new Base(20,20,50,"red",c, c.getCase(new Point(0,0)));
+        Base b1 = new Base(20,20,50,"blue",carte, carte.getCase(new Point(0,0)));
+        int x = carte.getLargeur()-1;
+        int y = carte.getHauteur()-1;
+        Base b2 = new Base(20,20,50,"red",carte, carte.getCase(new Point(x, y)));
+        b1.creerMele();
+        b2.creerMele();
+        //Attaquant u3 = new Attaquant(b1,20,5,1,1,1,5,c.getCase(new Point(1,0)),c,1);
+        //Attaquant u5 = new Attaquant(b2,20,5,1,1,1,5,c.getCase(new Point(x-1,y-1)),c,1);
+        //Attaquant u6 = new Attaquant(b2,20,5,1,1,1,5,c.getCase(new Point(x-1,y)),c,1);
         loadSprites();
         width = boxSize*carte.getLargeur();
         height = boxSize*carte.getHauteur();
@@ -68,11 +77,15 @@ public class GridOfSprites extends JFrame implements ActionListener{
 
     private void loadSprites() {
         try {
-            sprites = new BufferedImage[2];
-            sprites[0] = ImageIO.read(new File("/Users/sylvainchen/git/test-github/Empire_v2/src/main/resources/grass.jpg"));
-            sprites[1] = ImageIO.read(new File("/Users/sylvainchen/git/test-github/Empire_v2/src/main/resources/Bricks.jpg"));
+            sprites = new BufferedImage[3];
+            sprites[0] = ImageIO.read(new File("/Users/sylvainchen/git/test-github/empire-v2/Empire_v2/src/main/resources/grass.jpg"));
+            sprites[1] = ImageIO.read(new File("/Users/sylvainchen/git/test-github/empire-v2/Empire_v2/src/main/resources/Bricks.jpg"));
+            sprites[2] = ImageIO.read(new File("/Users/sylvainchen/git/test-github/empire-v2/Empire_v2/src/main/resources/ez.png"));
         } catch (IOException ex) {
             Logger.getLogger(GridOfSprites.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        catch(Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -111,9 +124,12 @@ public class GridOfSprites extends JFrame implements ActionListener{
             for(Point p : carte.getPoints()) {
                 Case c = map.get(p);
                 if(c.estObstacle())
-                    g.drawImage(sprites[1], boxSize * (int)p.getY(), boxSize * (int)p.getX(), null);
-                //else
-                //   g.drawImage(sprites[0], boxSize * (int)p.getY(), boxSize * (int)p.getX(), null);
+                    g.drawImage(sprites[1], boxSize * (int)p.getX(), boxSize * (int)p.getY(), null);
+                else
+                    if(c.getUnites().size() > 0)
+                        g.drawImage(sprites[2], boxSize * (int)p.getX(), boxSize * (int)p.getY(), null);
+                    else
+                        g.drawImage(sprites[0], boxSize * (int)p.getX(), boxSize * (int)p.getY(), null);
             }
             //g.drawImage(sprites[0], boxSize * 5, boxSize * 3, null);
             //g.drawImage(sprites[1], boxSize * 2, boxSize * 1, null);

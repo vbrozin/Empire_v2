@@ -38,14 +38,14 @@ public class Unite implements IAgent{
     /**
      * Constructor.
      */
-    public Unite(Base b, int pv, int pt, int pa, double po, Case<Point> c, Carte ca) {
+    public Unite(Base b, int pv, int pa, int poa, double pov, Case<Point> c, Carte ca) {
         // Start of user code for constructor Unite
         super();
         this.maBase = b;
         this.pvRestant = pv;
-        this.pointAttaque = pt;
-        this.porteeAttaque = pa;
-        this.porteeVision = po;
+        this.pointAttaque = pa;
+        this.porteeAttaque = poa;
+        this.porteeVision = pov;
         this.maCase = c;
         this.map = ca;
         // ajout de l'unité dans sa case

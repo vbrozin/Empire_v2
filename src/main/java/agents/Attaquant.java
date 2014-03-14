@@ -30,9 +30,9 @@ public class Attaquant extends Unite implements IUniteLibre {
     /**
      * Constructor.
      */
-    public Attaquant(Base b, int pv, int pt, int pa, double po, Case<Point> c, Carte ca) {
+    public Attaquant(Base b, int pv, int pa, int poa, double pov, Case<Point> c, Carte ca) {
     // Start of user code for constructor Unite
-    super(b, pv, pt, pa, po, c, ca);
+    super(b, pv, pa, poa, pov, c, ca);
     // End of user code
     }
 
