@@ -50,101 +50,7 @@ public class Recolteur extends Unite implements IUniteLibre {
         // End of user code
     }
 
-    /**
-     * Return capaciteTotal.
-     * @return capaciteTotal
-     */
-    public int getCapaciteTotal() {
-        return capaciteTotal;
-    }
 
-    /**
-     * Set a value to attribute capaciteTotal.
-     * @param capaciteTotal
-     */
-    public void setCapaciteTotal(int capaciteTotal) {
-        this.capaciteTotal = capaciteTotal;
-    }
-
-    /**
-     * Return vitesseDeplacement.
-     * @return vitesseDeplacement
-     */
-    public int getVitesseDeplacement() {
-        return vitesseDeplacement;
-    }
-
-    /**
-     * Set a value to attribute vitesseDeplacement.
-     * @param vitesseDeplacement
-     */
-    public void setVitesseDeplacement(int vitesseDeplacement) {
-        this.vitesseDeplacement = vitesseDeplacement;
-    }
-
-    /**
-     * Return vitesseRecolte.
-     * @return vitesseRecolte
-     */
-    public int getVitesseRecolte() {
-        return vitesseRecolte;
-    }
-
-    /**
-     * Set a value to attribute vitesseRecolte.
-     * @param vitesseRecolte
-     */
-    public void setVitesseRecolte(int vitesseRecolte) {
-        this.vitesseRecolte = vitesseRecolte;
-    }
-
-    /**
-     * Return bois.
-     * @return bois
-     */
-    public int getBois() {
-        return bois;
-    }
-
-    /**
-     * Set a value to attribute bois.
-     * @param bois
-     */
-    public void setBois(int bois) {
-        this.bois = bois;
-    }
-
-    /**
-     * Return nourriture.
-     * @return nourriture
-     */
-    public int getNourriture() {
-        return nourriture;
-    }
-
-    /**
-     * Set a value to attribute nourriture.
-     * @param nourriture
-     */
-    public void setNourriture(int nourriture) {
-        this.nourriture = nourriture;
-    }
-
-    /**
-     * Return porteeRecolte.
-     * @return porteeRecolte
-     */
-    public double getPorteeRecolte() {
-        return porteeRecolte;
-    }
-
-    /**
-     * Set a value to attribute porteeRecolte.
-     * @param porteeRecolte
-     */
-    public void setPorteeRecolte(double porteeRecolte) {
-        this.porteeRecolte = porteeRecolte;
-    }
 
 
     /**
@@ -158,14 +64,7 @@ public class Recolteur extends Unite implements IUniteLibre {
         maCase = caseLibre;
         maCase.ajouterUnite(this);
     }
-    /**
-     * Description of the method suivreUnite.
-     *
-     * @param cible
-     */
-    public void suivreUnite(IAgent cible) {
 
-    }
 
     /**
      * Description of the method reagir.
@@ -182,14 +81,14 @@ public class Recolteur extends Unite implements IUniteLibre {
      * Description of the method reagirRecolte.
      * Quand l'unite n'est pas pleine, soit elle recolte soit elle se dirige vers un point de recolte
      *
-     *@param ressource
+     *@param caseRessource
      */
-    public void reagirRecolte(Case<Point> ressource) {
+    public void reagirRecolte(Case<Point> caseRessource) {
         // Start of user code for method reagirRecolte
-        if(calculerDistance(ressource) <= porteeRecolte)
-            recolter(ressource.getRessource());
+        if(calculerDistance(caseRessource) <= porteeRecolte)
+            recolter(caseRessource.getRessource());
         else {
-            Case<Point> next = maBase.calculerChemin(ressource, maCase);
+            Case<Point> next = maBase.calculerChemin(maCase, caseRessource);
             seDeplacer(next);
         }
         // End of user code

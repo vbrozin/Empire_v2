@@ -123,38 +123,6 @@ public class Base extends Agent implements IAgent  {
     }
 
     /**
-     * Return bois.
-     * @return bois
-     */
-    public int getBois() {
-        return bois;
-    }
-
-    /**
-     * Set a value to attribute bois.
-     * @param bois
-     */
-    public void setBois(int bois) {
-        this.bois = bois;
-    }
-
-    /**
-     * Return nourriture.
-     * @return nourriture
-     */
-    public int getNourriture() {
-        return nourriture;
-    }
-
-    /**
-     * Set a value to attribute nourriture.
-     * @param nourriture
-     */
-    public void setNourriture(int nourriture) {
-        this.nourriture = nourriture;
-    }
-
-    /**
      * Return unites.
      * @return unites
      */
@@ -186,13 +154,6 @@ public class Base extends Agent implements IAgent  {
         return nom;
     }
 
-    /**
-     * Set a value to attribute nom.
-     * @param nom
-     */
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
 
 
     /**
@@ -257,25 +218,17 @@ public class Base extends Agent implements IAgent  {
                     attaquants.add((Attaquant) u);
                 }
             }
-            final int width = carte.getLargeur();
-            final int height = carte.getHauteur();
-            int i = 0;
             for(Attaquant at : attaquants) {
                 if(at.getPvRestant() > 0) {
-                    if(at.reagir2()) {
+                    // Priorité par rapport à la demande de la base
+                    if(at.ennemiProche()) {
                         at.reagir();
-                        System.out.println("On attaque");
+                        System.out.println("On attaque ou on suit");
                     }
+                    // But final qui est d'aller attaquer la cible
                     else {
-                        final AEtoile<Point> astart = new AEtoile<Point>(successorComputer, fabriqueNoeud);
-                        final List<Point> result = astart.compute(at.getCase().getIndex(), cible.getIndex());
-                        if(result.size() > 1) {
-                            Case<Point> caseCible = (Case<Point>)carte.getMap().get(result.get(1));
-                            at.seDeplacer(caseCible);
-                        }
-                        else {
-                            System.out.println("Pas de déplacement possible");
-                        }
+                        Case<Point> caseCible = calculerChemin(at.getCase(), cible);
+                        at.seDeplacer(caseCible);
                     }
                 }
             }
@@ -292,25 +245,23 @@ public class Base extends Agent implements IAgent  {
     public void recolter() {
         ArrayList<Case<Point>> cases = carte.getCasesRessources();
         // Calcul de ressource la plus proche
-
-
         Case<Point> bois = calculerCasePlusProche(cases);
         Case<Point> nourriture = calculerCasePlusProche(cases);
 
 
         if(bois != null || nourriture != null) {
             // Demander aux recolteur de lancer la procedure de recolte (leur réagir)
-            ArrayList<Recolteur> recolteur = new ArrayList<Recolteur>();
+            ArrayList<Recolteur> recolteurs = new ArrayList<Recolteur>();
             for(Unite u : getUnites()) {
                 String className = u.getClass().getSimpleName();
                 if(className.equals("Recolteur")) {
-                    recolteur.add((Recolteur) u);
+                    recolteurs.add((Recolteur) u);
                 }
             }
             final int width = carte.getLargeur();
             final int height = carte.getHauteur();
             int i = 0;
-            for(Recolteur rec : recolteur) {
+            for(Recolteur rec : recolteurs) {
                 rec.reagir(bois);
                 // ou nourriture faut trouver un moyen de pas les faire changer de ressource cible en cours de route.
                 // soit faire 2 fct récolterBois et recolterNourriture
@@ -420,7 +371,7 @@ public class Base extends Agent implements IAgent  {
      * Retourne la case ou doit se deplacer une unité desirant se rendre à la case destination
      * @return res
      */
-    public Case<Point> calculerChemin(Case<Point> destination, Case<Point> caseUnite) {
+    public Case<Point> calculerChemin(Case<Point> caseUnite, Case<Point> destination) {
         Case<Point> res = caseUnite;
 
         final AEtoile<Point> astart = new AEtoile<Point>(successorComputer, fabriqueNoeud);

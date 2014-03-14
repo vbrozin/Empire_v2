@@ -40,22 +40,6 @@ public class Attaquant extends Unite implements IUniteLibre {
     }
 
     /**
-     * Return vitesse.
-     * @return vitesse
-     */
-    public int getVitesse() {
-        return vitesse;
-    }
-
-    /**
-     * Set a value to attribute vitesse.
-     * @param vitesse
-     */
-    public void setVitesse(int vitesse) {
-        this.vitesse = vitesse;
-    }
-
-    /**
      * Description of the method seDeplacer.
     *
     * @param caseLibre
@@ -76,28 +60,8 @@ public class Attaquant extends Unite implements IUniteLibre {
      * @param cible
      */
     public void suivreUnite(IAgent cible) {
-        int cibleX = (int) cible.getCase().getIndex().getX();
-        int cibleY = (int) cible.getCase().getIndex().getY();
-        int myX = (int) maCase.getIndex().getX();
-        int myY = (int) maCase.getIndex().getY();
-        int deltaX = cibleX-myX;
-        int deltaY = cibleY-myY;
-        if(Math.abs(deltaX) > Math.abs(deltaY)) {
-            if(deltaX < 0)
-                //deplacement case gauche
-                seDeplacer(map.getCase(new Point(myX-1,myY)));
-            else
-                //deplacement case droite
-                seDeplacer(map.getCase(new Point(myX+1,myY)));
-        }
-        else {
-            if(deltaY < 0)
-                //deplacement case bas
-                seDeplacer(map.getCase(new Point(myY-1,myX)));
-            else
-                //deplacement case haut
-                seDeplacer(map.getCase(new Point(myY+1,myX)));
-        }
+        Case<Point> caseCalculee = maBase.calculerChemin(maCase, cible.getCase());
+        seDeplacer(caseCalculee);
     }
 
     /**
@@ -106,25 +70,28 @@ public class Attaquant extends Unite implements IUniteLibre {
      * on verifit la distance est on attaque ou on se deplace vers l'unite ennemie selon le cas.
      */
     public void reagir() {
-        IAgent ennemie = calculerUnitePlusProche();
-        if(ennemie != null) {
-            if(calculerDistance(ennemie) <= porteeAttaque)
-                attaquer(ennemie);
-            else
-                suivreUnite(ennemie);
+        IAgent ennemi = calculerUnitePlusProche();
+        if(ennemi != null) {
+            double distance = calculerDistance(ennemi);
+            if(distance <= porteeVision) {
+                if(distance <= porteeAttaque)
+                    attaquer(ennemi);
+                else
+                    suivreUnite(ennemi);
+            }
         }
     }
 
     /**
      * Description of the method reagir.
      * On cherche une unite ennemie dans la portee de vision, si il y en a une,
-     * on verifit la distance est on attaque ou on se deplace vers l'unite ennemie selon le cas.
+     * on verifie la distance est on attaque ou on se deplace vers l'unite ennemie selon le cas.
      */
-    public boolean reagir2() {
-        IAgent ennemie = calculerUnitePlusProche();
+    public boolean ennemiProche() {
+        IAgent ennemi = calculerUnitePlusProche();
         boolean b = false;
-        if(ennemie != null) {
-            if(calculerDistance(ennemie) <= porteeAttaque)
+        if(ennemi != null) {
+            if(calculerDistance(ennemi) <= porteeVision)
                 return true;
             else
                 return false;
@@ -132,11 +99,4 @@ public class Attaquant extends Unite implements IUniteLibre {
         return b;
     }
 
-
-    // Start of user code to add methods for Attaquant
-
-
-
-
-    // End of user code
 }

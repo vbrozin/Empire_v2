@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b206447-f9a8-4f33-9e3c-e1c4fdad0239" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/agents/Attaquant.java" afterPath="$PROJECT_DIR$/src/main/java/agents/Attaquant.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/agents/Base.java" afterPath="$PROJECT_DIR$/src/main/java/agents/Base.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/environment/Carte.java" afterPath="$PROJECT_DIR$/src/main/java/environment/Carte.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/environment/Case.java" afterPath="$PROJECT_DIR$/src/main/java/environment/Case.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/agents/IAgent.java" afterPath="$PROJECT_DIR$/src/main/java/agents/IAgent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/agents/IUniteLibre.java" afterPath="$PROJECT_DIR$/src/main/java/agents/IUniteLibre.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/agents/Recolteur.java" afterPath="$PROJECT_DIR$/src/main/java/agents/Recolteur.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Empire_v2.iws" />
@@ -62,23 +61,7 @@
       </breakpoint>
     </breakpoint_any>
     <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
-    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint url="file://$PROJECT_DIR$/src/main/java/agents/Attaquant.java" line="108" class="agents.Attaquant" package="agents">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-    </line_breakpoints>
+    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -88,10 +71,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GridOfSprites.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/gui/GridOfSprites.java">
+      <file leaf-file-name="Recolteur.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/agents/Recolteur.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="20" selection-start="763" selection-end="763" vertical-scroll-proportion="0.0" vertical-offset="495" max-vertical-offset="2220">
+            <state line="25" column="0" selection-start="501" selection-end="501" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2265">
               <folding />
             </state>
           </provider>
@@ -145,7 +128,7 @@
       <file leaf-file-name="AEtoile.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/agents/AEtoile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="38" selection-start="716" selection-end="716" vertical-scroll-proportion="0.0" vertical-offset="375" max-vertical-offset="1485">
+            <state line="40" column="18" selection-start="1270" selection-end="1270" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1425">
               <folding />
             </state>
           </provider>
@@ -160,19 +143,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Ressource.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/environment/Ressource.java">
+      <file leaf-file-name="Unite.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/agents/Unite.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="35" selection-start="653" selection-end="666" vertical-scroll-proportion="0.0" vertical-offset="132" max-vertical-offset="1155">
+            <state line="24" column="0" selection-start="417" selection-end="417" vertical-scroll-proportion="0.24475524" vertical-offset="105" max-vertical-offset="4215">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Base.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/agents/Base.java">
+      <file leaf-file-name="Ressource.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/environment/Ressource.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="249" column="58" selection-start="0" selection-end="12426" vertical-scroll-proportion="0.4755245" vertical-offset="2916" max-vertical-offset="5970">
+            <state line="32" column="35" selection-start="653" selection-end="666" vertical-scroll-proportion="0.0" vertical-offset="132" max-vertical-offset="1155">
               <folding />
             </state>
           </provider>
@@ -199,15 +182,15 @@
         <option value="$PROJECT_DIR$/src/main/java/test/testRessource.java" />
         <option value="$PROJECT_DIR$/src/main/java/agents/Defenseur.java" />
         <option value="$PROJECT_DIR$/src/main/java/agents/Agent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/agents/IUniteLibre.java" />
         <option value="$PROJECT_DIR$/src/main/java/agents/Unite.java" />
-        <option value="$PROJECT_DIR$/src/main/java/agents/Attaquant.java" />
         <option value="$PROJECT_DIR$/src/main/java/test/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/agents/Recolteur.java" />
         <option value="$PROJECT_DIR$/src/main/java/agents/IAgent.java" />
         <option value="$PROJECT_DIR$/src/main/java/environment/Jeu.java" />
         <option value="$PROJECT_DIR$/src/main/java/environment/Case.java" />
         <option value="$PROJECT_DIR$/src/main/java/environment/Carte.java" />
+        <option value="$PROJECT_DIR$/src/main/java/agents/Recolteur.java" />
+        <option value="$PROJECT_DIR$/src/main/java/agents/IUniteLibre.java" />
+        <option value="$PROJECT_DIR$/src/main/java/agents/Attaquant.java" />
         <option value="$PROJECT_DIR$/src/main/java/agents/Base.java" />
       </list>
     </option>
@@ -744,7 +727,11 @@
       <created>1394216097682</created>
       <updated>1394216097682</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Ajout ressource dans case&#10;Ajout ressource dans base&#10;calculer case plus proche de la base">
+      <created>1394806183660</created>
+      <updated>1394806183660</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -761,6 +748,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30465445" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29278642" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -771,7 +759,6 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.45685998" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29278642" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="combo" />
     </layout>
@@ -793,7 +780,8 @@
     <MESSAGE value="Mise à jour de jeu, case, recolteur&#10;+ Javadoc" />
     <MESSAGE value="Mis à jour des agents et du jeu&#10;Test des attaquants ok" />
     <MESSAGE value="Mis à jour des agents et du jeu&#10;Test des attaquants ok&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Mis à jour des agents et du jeu&#10;Test des attaquants ok&#10;" />
+    <MESSAGE value="Ajout ressource dans case&#10;Ajout ressource dans base&#10;calculer case plus proche de la base" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout ressource dans case&#10;Ajout ressource dans base&#10;calculer case plus proche de la base" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1041,27 +1029,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/agents/Attaquant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="123" column="17" selection-start="3322" selection-end="3322" vertical-scroll-proportion="0.38636363" vertical-offset="1495" max-vertical-offset="2025">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/agents/IUniteLibre.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="7" selection-start="738" selection-end="738" vertical-scroll-proportion="1.0318182" vertical-offset="56" max-vertical-offset="720">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/agents/Recolteur.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="181" column="31" selection-start="4074" selection-end="4074" vertical-scroll-proportion="0.0" vertical-offset="2715" max-vertical-offset="3960">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/gui/GridOfSprites.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="33" column="20" selection-start="763" selection-end="763" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2010">
@@ -1097,30 +1064,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/agents/AEtoile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="38" selection-start="716" selection-end="716" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1425">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.7.0_25.jdk/Contents/Home/src.zip!/java/lang/Object.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="382" column="29" selection-start="17643" selection-end="17643" vertical-scroll-proportion="0.0" vertical-offset="5244" max-vertical-offset="8055">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/agents/Unite.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="227" column="30" selection-start="5593" selection-end="5593" vertical-scroll-proportion="6.608392" vertical-offset="0" max-vertical-offset="4215">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/agents/IAgent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="0" selection-start="325" selection-end="325" vertical-scroll-proportion="0.61085975" vertical-offset="0" max-vertical-offset="442">
           <folding />
         </state>
       </provider>
@@ -1146,13 +1092,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/environment/Case.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="120" column="47" selection-start="2465" selection-end="2465" vertical-scroll-proportion="0.5588235" vertical-offset="1298" max-vertical-offset="1740">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/environment/Jeu.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="18" selection-start="411" selection-end="411" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2730">
@@ -1171,9 +1110,58 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/environment/Case.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="62" column="0" selection-start="1347" selection-end="1347" vertical-scroll-proportion="0.0" vertical-offset="543" max-vertical-offset="1740">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/agents/IAgent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="7" selection-start="235" selection-end="235" vertical-scroll-proportion="0.40723982" vertical-offset="0" max-vertical-offset="442">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/agents/IUniteLibre.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="6" selection-start="565" selection-end="565" vertical-scroll-proportion="0.0" vertical-offset="158" max-vertical-offset="600">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/agents/Recolteur.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="0" selection-start="501" selection-end="501" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2265">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/agents/Attaquant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="26" selection-start="827" selection-end="827" vertical-scroll-proportion="0.6606335" vertical-offset="128" max-vertical-offset="1485">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/agents/Base.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="249" column="58" selection-start="0" selection-end="12426" vertical-scroll-proportion="0.4755245" vertical-offset="2916" max-vertical-offset="5970">
+        <state line="380" column="9" selection-start="11154" selection-end="11154" vertical-scroll-proportion="0.0" vertical-offset="4956" max-vertical-offset="5385">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/agents/AEtoile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="18" selection-start="1270" selection-end="1270" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1425">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/agents/Unite.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="0" selection-start="417" selection-end="417" vertical-scroll-proportion="0.24475524" vertical-offset="105" max-vertical-offset="4215">
           <folding />
         </state>
       </provider>
