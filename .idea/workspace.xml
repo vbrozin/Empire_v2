@@ -5,9 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b206447-f9a8-4f33-9e3c-e1c4fdad0239" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/environment/Domaine.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/environment/Carte.java" afterPath="$PROJECT_DIR$/src/main/java/environment/Carte.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Empire_v2.iws" />
@@ -110,7 +107,7 @@
       <file leaf-file-name="Carte.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/environment/Carte.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="49" column="37" selection-start="1277" selection-end="1277" vertical-scroll-proportion="0.42081448" vertical-offset="459" max-vertical-offset="2535">
+            <state line="31" column="57" selection-start="670" selection-end="670" vertical-scroll-proportion="0.14932127" vertical-offset="309" max-vertical-offset="2535">
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#728#745#0" expanded="true" />
@@ -763,7 +760,11 @@
       <created>1394817273502</created>
       <updated>1394817273502</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Matrice symétrique&#10;">
+      <created>1394819333418</created>
+      <updated>1394819333418</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -816,7 +817,8 @@
     <MESSAGE value="Comportements des agents récolteurs et des agents attaquantes" />
     <MESSAGE value="mise à jour unités" />
     <MESSAGE value="Matrice symétrique" />
-    <option name="LAST_COMMIT_MESSAGE" value="Matrice symétrique" />
+    <MESSAGE value="Matrice symétrique&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Matrice symétrique&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1201,7 +1203,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/environment/Carte.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="37" selection-start="1277" selection-end="1277" vertical-scroll-proportion="0.42081448" vertical-offset="459" max-vertical-offset="2535">
+        <state line="31" column="57" selection-start="670" selection-end="670" vertical-scroll-proportion="0.14932127" vertical-offset="309" max-vertical-offset="2535">
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#728#745#0" expanded="true" />
