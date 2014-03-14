@@ -22,8 +22,6 @@ import java.awt.Point;
 */
 
 public class Attaquant extends Unite implements IUniteLibre {
-    private Carte carte;
-    private double porteeVision;
 
     // Start of user code to add fields for Attaquant
 
