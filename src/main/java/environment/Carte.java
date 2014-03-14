@@ -40,37 +40,58 @@ public class Carte {
         // Start of user code for constructor Carte
         largeur = matrix[0].length;
         hauteur = matrix.length;
+
+        hauteur = largeur = Math.min(largeur, hauteur);
         for(int i=0; i<hauteur; i++)
-            for(int j=0; j<largeur; j++) {
+            for(int j=0; j<=i; j++) {
                 Point p = new Point(j,i);
                 points.add(p);
+                Point p2 = new Point(i,j);
+
+                if(i != j)
+                    points.add(p2);
                 Case<Point> c = null;
+                Case<Point> c2 = null;
                 // Création des cases libres
-                if(" ".equals(matrix[i][j]))
+                if(" ".equals(matrix[i][j])) {
                     c = new Case(p, false);
+                    c2 = new Case(p, false);
+                }
+
                 else {
                     // Création des ressources
                     if("n".equals(matrix[i][j]) || "b".equals(matrix[i][j])) {
                         TypeRessource type = null;
-                        if("b".equals(matrix[i][j]))
+                        if("m".equals(matrix[i][j]))
                             type = TypeRessource.BOIS;
                         if("n".equals(matrix[i][j]))
                             type = TypeRessource.NOURRITURE;
                         Ressource r = new Ressource(1000, type);
                         c = new Case(p, false);
+                        c2 = new Case(p, false);
                         c.ajouterRessource(r);
+                        c2.ajouterRessource(r);
                     }
                     // Création des bases
                     if("q".equals(matrix[i][j])) {
                         c = new Case(p, false);
+                        c2 = new Case(p, false);
                         casesBases.add(c);
+                        if(i != j)
+                            casesBases.add(c2);
                     }
                     // Création des obstacles
-                    else
+                    else {
                         c = new Case(p, true);
+                        c2 = new Case(p2, true);
+                    }
+
                 }
                 map.put(p,c);
+                if(i != j)
+                    map.put(p2,c2);
             }
+        System.out.println();
         // End of user code
     }
 

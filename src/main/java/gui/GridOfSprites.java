@@ -58,9 +58,9 @@ public class GridOfSprites extends JFrame implements ActionListener{
         Base b1 = new Base(20,20,50,"blue",carte, carte.getCase(new Point(0,0)));
         int x = carte.getLargeur()-1;
         int y = carte.getHauteur()-1;
-        Base b2 = new Base(20,20,50,"red",carte, carte.getCase(new Point(x, y)));
+        //Base b2 = new Base(20,20,50,"red",carte, carte.getCase(new Point(1, 0)));
         b1.creerMele();
-        b2.creerMele();
+        //b2.creerMele();
         //Attaquant u3 = new Attaquant(b1,20,5,1,1,1,5,c.getCase(new Point(1,0)),c,1);
         //Attaquant u5 = new Attaquant(b2,20,5,1,1,1,5,c.getCase(new Point(x-1,y-1)),c,1);
         //Attaquant u6 = new Attaquant(b2,20,5,1,1,1,5,c.getCase(new Point(x-1,y)),c,1);
