@@ -37,4 +37,6 @@ public class Domaine {
     public void addCasesDefenses(Case<Point> cas) {
         casesDefenses.add(cas);
     }
+
+
 }

@@ -29,9 +29,7 @@ public class Base extends Agent implements IAgent, Constantes {
     private List<Unite> unites;
     private String nom;
     private Carte carte;
-    private Case<Point> maCase;
-    private List<Case<Point>> defense;
-    private List<Case<Point>> spawn;
+    private Domaine domaine;
 
     public Jeu getJeu() {
         return jeu;
@@ -109,7 +107,7 @@ public class Base extends Agent implements IAgent, Constantes {
     /**
      * Constructor.
      */
-    public Base(int bois, int nourriture, int pv, String nom, Carte c, Case<Point> case2) {
+    public Base(int bois, int nourriture, int pv, String nom, Carte c, Domaine dom) {
         // Start of user code for constructor Base
         super(pv);
         this.bois = bois;
@@ -117,15 +115,15 @@ public class Base extends Agent implements IAgent, Constantes {
         this.nom = nom;
         this.carte = c;
         this.unites = new ArrayList<Unite>();
-        this.maCase = case2;
-        this.maCase.ajouterUnite(this);
+        this.domaine = dom;
+        this.domaine.getCaseBase().ajouterUnite(this);
         // End of user code
     }
 
     public Case<Point> getPositionDePop() {
         Case<Point> res = null,temp = null;
         boolean trouve=false;
-        Iterator<Case<Point>> i= spawn.iterator();
+        Iterator<Case<Point>> i= domaine.getCasesUnitesLibres().iterator();
         while(i.hasNext() && trouve==false) {
             temp = i.next();
             if(temp.estLibre()) {
@@ -139,7 +137,7 @@ public class Base extends Agent implements IAgent, Constantes {
     public Case<Point> getPositionDef() {
         Case<Point> res = null,temp = null;
         boolean trouve=false;
-        Iterator<Case<Point>> i= defense.iterator();
+        Iterator<Case<Point>> i= domaine.getCasesDefenses().iterator();
         while(i.hasNext() && trouve==false) {
             temp = i.next();
             if(temp.estLibre()) {
@@ -151,37 +149,49 @@ public class Base extends Agent implements IAgent, Constantes {
     }
     public void creerMele() {
         if(nourriture >= MELE_COUT) {
-            nourriture -= MELE_COUT;
             Case<Point> cas = getPositionDePop();
-            Attaquant at = new Attaquant(this, MELE_PV, MELE_AT, MELE_P_AT, MELE_P_V, cas, carte);
-            unites.add(at);
+            if(cas != null)
+            {
+                nourriture -= MELE_COUT;
+                Attaquant at = new Attaquant(this, MELE_PV, MELE_AT, MELE_P_AT, MELE_P_V, cas, carte);
+                unites.add(at);
+            }
         }
     }
 
     public void creerArcher() {
         if(nourriture >= ARCHE_COUT) {
-            nourriture -= ARCHE_COUT;
             Case<Point> cas = getPositionDePop();
-            Attaquant at = new Attaquant(this, ARCHE_PV, ARCHE_AT, ARCHE_P_AT, ARCHE_P_V, cas, carte);
-            unites.add(at);
+            if(cas != null)
+            {
+                nourriture -= ARCHE_COUT;
+                Attaquant at = new Attaquant(this, ARCHE_PV, ARCHE_AT, ARCHE_P_AT, ARCHE_P_V, cas, carte);
+                unites.add(at);
+            }
         }
     }
 
      public void creerRecolteur() {
         if(nourriture >= RECOL_COUT) {
-            nourriture -= RECOL_COUT;
             Case<Point> cas = getPositionDePop();
-            Recolteur at = new Recolteur(this, RECOL_PV, RECOL_AT, RECOL_P_R, 0, cas, carte, RECOL_CAP);
-            unites.add(at);
+            if(cas != null)
+            {
+                nourriture -= RECOL_COUT;
+                Recolteur at = new Recolteur(this, RECOL_PV, RECOL_AT, RECOL_P_R, 0, cas, carte, RECOL_CAP);
+                unites.add(at);
+            }
         }
     }
 
     public void creerDefenseur() {
         if(bois >= DEF_COUT) {
-            bois -= DEF_COUT;
             Case<Point> cas = getPositionDef();
-            Defenseur at = new Defenseur(this, DEF_PV, DEF_AT, DEF_P_AT, DEF_P_V, cas, carte);
-            unites.add(at);
+            if(cas != null)
+            {
+                bois -= DEF_COUT;
+                Defenseur at = new Defenseur(this, DEF_PV, DEF_AT, DEF_P_AT, DEF_P_V, cas, carte);
+                unites.add(at);
+            }
         }
     }
 
@@ -261,7 +271,32 @@ public class Base extends Agent implements IAgent, Constantes {
      */
     public void jouer() {
         // Start of user code for method jouer
+        int nbRecolteur = 0;
+        for(Unite u : getUnites()) {
+                String className = u.getClass().getSimpleName();
+                if(className.equals("Recolteur")) {
+                    nbRecolteur++;
+                }
+            }
+        // on a toujours autant de récolteur que la moitié du nombre total de ressource (sauf cas ou pas assez de ressources)
+        int temp = (int)Math.floor(carte.getCasesRessources().size()/2);
+        if(nbRecolteur < temp)
+            for(int i=0;i<nbRecolteur-temp-1;i++)
+                creerRecolteur();
+
+        recolter();
+
+        // si on a assez de nourriture, on lance une attaque
+        if(nourriture > 780)
+        {
+            for(int i=0;i<10;i++)
+                creerMele();
+            for(int i=0;i<4;i++)
+                creerArcher();
+        }
         attaquer();
+        if(bois > 100)
+            creerDefenseur();
         // End of user code
     }
 
@@ -388,7 +423,7 @@ public class Base extends Agent implements IAgent, Constantes {
      * @return maCase
      */
     public Case<Point> getCase() {
-        return this.maCase;
+        return this.domaine.getCaseBase();
     }
 
     /**
@@ -399,8 +434,8 @@ public class Base extends Agent implements IAgent, Constantes {
         double distance = Double.MAX_VALUE;
         Case<Point> resultat = null;
         for(Case<Point> c : cases) {
-            int posX = (int) this.maCase.getIndex().getX();
-            int posY = (int) this.maCase.getIndex().getY();
+            int posX = (int) this.getCase().getIndex().getX();
+            int posY = (int) this.getCase().getIndex().getY();
             int cX = (int) c.getIndex().getX();
             int cY = (int) c.getIndex().getY();
             double temp = Math.abs(posX-cX) + Math.abs(posY-cY);
@@ -416,7 +451,7 @@ public class Base extends Agent implements IAgent, Constantes {
         if(pvRestant <= 0) {
             pv = 0;
             jeu.removeBases(this);
-            maCase.retirerUnite(this);
+            getCase().retirerUnite(this);
         }
 
         else
