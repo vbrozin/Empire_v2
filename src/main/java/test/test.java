@@ -26,6 +26,8 @@ public class test {
         Carte c = new Carte(matrix);
         Base b1 = new Base(20,20,50,"blue", c, c.getCase(new Point(0,0)));
         Base b2 = new Base(20,20,50,"red",c, c.getCase(new Point(4,4)));
+        Attaquant u1 = new Attaquant(b1,20,1,1,5,c.getCase(new Point(4,3)),c);
+        Attaquant u4 = new Attaquant(b2,20,5,1,5,c.getCase(new Point(2,3)),c);
 
        while(b1.getUnites().size() > 0 && b2.getUnites().size() > 0) {
             System.out.println("tour de 1)");

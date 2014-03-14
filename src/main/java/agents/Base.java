@@ -14,10 +14,7 @@ import environment.*;
 
 import java.awt.Point;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 // End of user code
 
@@ -33,6 +30,8 @@ public class Base extends Agent implements IAgent, Constantes {
     private String nom;
     private Carte carte;
     private Case<Point> maCase;
+    private List<Case<Point>> defense;
+    private List<Case<Point>> spawn;
 
     public Jeu getJeu() {
         return jeu;
@@ -124,14 +123,30 @@ public class Base extends Agent implements IAgent, Constantes {
     }
 
     public Case<Point> getPositionDePop() {
-        Case res = null;
-
+        Case<Point> res = null,temp = null;
+        boolean trouve=false;
+        Iterator<Case<Point>> i= spawn.iterator();
+        while(i.hasNext() && trouve==false) {
+            temp = i.next();
+            if(temp.estLibre()) {
+                res = temp;
+                trouve = true;
+            }
+        }
         return res;
     }
 
     public Case<Point> getPositionDef() {
-        Case res = null;
-
+        Case<Point> res = null,temp = null;
+        boolean trouve=false;
+        Iterator<Case<Point>> i= defense.iterator();
+        while(i.hasNext() && trouve==false) {
+            temp = i.next();
+            if(temp.estLibre()) {
+                res = temp;
+                trouve = true;
+            }
+        }
         return res;
     }
     public void creerMele() {
