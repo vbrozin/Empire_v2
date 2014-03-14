@@ -247,7 +247,7 @@ public class Base extends Agent implements IAgent  {
     public void attaquer() {
         ArrayList<Case<Point>> cases = jeu.getCasesBases(this);
         // Calcul de la base la plus proche
-        Case<Point> cible = calculerBasePlusProche(cases);
+        Case<Point> cible = calculerCasePlusProche(cases);
         if(cible != null) {
             // Demander aux attaquants de se diriger vers la cible
             ArrayList<Attaquant> attaquants = new ArrayList<Attaquant>();
@@ -290,12 +290,12 @@ public class Base extends Agent implements IAgent  {
      *
      */
     public void recolter() {
-        ArrayList<Case<Point>> cases = jeu.getCasesBases(this);
+        ArrayList<Case<Point>> cases = carte.getCasesRessources();
         // Calcul de ressource la plus proche
 
 
-        Case<Point> bois = calculerRessourcePlusProche(cases, true);
-        Case<Point> nourriture = calculerRessourcePlusProche(cases,false);
+        Case<Point> bois = calculerCasePlusProche(cases);
+        Case<Point> nourriture = calculerCasePlusProche(cases);
 
 
         if(bois != null || nourriture != null) {
@@ -380,7 +380,7 @@ public class Base extends Agent implements IAgent  {
      * Return maCase.
      * @return maCase
      */
-    public Case<Point> calculerBasePlusProche(ArrayList<Case<Point>> cases) {
+    public Case<Point> calculerCasePlusProche(ArrayList<Case<Point>> cases) {
         double distance = Double.MAX_VALUE;
         Case<Point> resultat = null;
         for(Case<Point> c : cases) {

@@ -17,7 +17,6 @@ public interface IAgent {
 
     public Case<Point> getCase();
 
-
     public Base getBase();
 
     public void subirDegats(int b);

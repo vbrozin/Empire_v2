@@ -115,6 +115,13 @@ public class Case<T>{
         return unites.get(i);
     }
 
+    /**
+     * Ajoute une unité dans la case
+     */
+    public void ajouterRessource(Ressource r) {
+        ressource = r;
+    }
+
     // Start of user code to add methods for Case
 
     // End of user code

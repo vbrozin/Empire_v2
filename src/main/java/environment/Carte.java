@@ -12,6 +12,7 @@ package environment;
 import agents.Unite;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -29,6 +30,8 @@ public class Carte {
     private int largeur;
     private Map<Point, Case> map = new HashMap<Point, Case>();
     private HashSet<Point> points = new HashSet<Point>();
+    private Map<Ressource, Case> ressources = new HashMap<Ressource, Case>();
+    private HashSet<Case> casesBases = new HashSet<Case>();
 
     /**
      * Constructor.
@@ -42,10 +45,30 @@ public class Carte {
                 Point p = new Point(j,i);
                 points.add(p);
                 Case<Point> c = null;
+                // Création des cases libres
                 if(" ".equals(matrix[i][j]))
                     c = new Case(p, false);
-                else
-                    c = new Case(p, true);
+                else {
+                    // Création des ressources
+                    if("n".equals(matrix[i][j]) || "b".equals(matrix[i][j])) {
+                        TypeRessource type = null;
+                        if("b".equals(matrix[i][j]))
+                            type = TypeRessource.BOIS;
+                        if("n".equals(matrix[i][j]))
+                            type = TypeRessource.NOURRITURE;
+                        Ressource r = new Ressource(1000, type);
+                        c = new Case(p, false);
+                        c.ajouterRessource(r);
+                    }
+                    // Création des bases
+                    if("q".equals(matrix[i][j])) {
+                        c = new Case(p, false);
+                        casesBases.add(c);
+                    }
+                    // Création des obstacles
+                    else
+                        c = new Case(p, true);
+                }
                 map.put(p,c);
             }
         // End of user code
@@ -102,5 +125,16 @@ public class Carte {
 		System.gc();
     }
 
+    /**
+     * Renvoie les cases des autres bases
+     *
+     */
+    public ArrayList<Case<Point>> getCasesRessources() {
+        ArrayList<Case<Point>> cases = new ArrayList<Case<Point>>();
+        for(Ressource r : ressources.keySet()) {
+            cases.add(ressources.get(r));
+        }
+        return cases;
+    }
     // End of user code
 }
