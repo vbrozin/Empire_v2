@@ -32,6 +32,7 @@ public class Carte {
     private HashSet<Point> points = new HashSet<Point>();
     private Map<Ressource, Case> ressources = new HashMap<Ressource, Case>();
     private HashSet<Case> casesBases = new HashSet<Case>();
+    private HashSet<Domaine> domaines = new HashSet<Domaine>();
 
     /**
      * Constructor.
@@ -41,7 +42,10 @@ public class Carte {
         largeur = matrix[0].length;
         hauteur = matrix.length;
 
-        hauteur = largeur = Math.min(largeur, hauteur);
+        hauteur = largeur = Math.max(largeur, hauteur);
+        Domaine dom1 = new Domaine();
+        Domaine dom2 = new Domaine();
+
         for(int i=0; i<hauteur; i++)
             for(int j=0; j<=i; j++) {
                 Point p = new Point(j,i);
@@ -60,7 +64,7 @@ public class Carte {
 
                 else {
                     // Création des ressources
-                    if("n".equals(matrix[i][j]) || "b".equals(matrix[i][j])) {
+                    if("n".equals(matrix[i][j]) || "m".equals(matrix[i][j])) {
                         TypeRessource type = null;
                         if("m".equals(matrix[i][j]))
                             type = TypeRessource.BOIS;
@@ -72,13 +76,25 @@ public class Carte {
                         c.ajouterRessource(r);
                         c2.ajouterRessource(r);
                     }
-                    // Création des bases
-                    if("q".equals(matrix[i][j])) {
+                    if("a".equals(matrix[i][j]) || "b".equals(matrix[i][j]) || "c".equals(matrix[i][j]) ){
                         c = new Case(p, false);
-                        c2 = new Case(p, false);
-                        casesBases.add(c);
-                        if(i != j)
+                        c2 = new Case(p2, false);
+                        if("a".equals(matrix[i][j])) {
+                            dom1.addCasesDefenses(c);
+                            dom2.addCasesDefenses(c2);
+                        }
+                        if("b".equals(matrix[i][j])) {
+                            dom1.addCasesUnitesLibres(c);
+                            dom2.addCasesUnitesLibres(c2);
+                        }
+
+                        if("c".equals(matrix[i][j])) {
+                            dom1.setCaseBase(c);
+                            dom2.setCaseBase(c2);
+                            casesBases.add(c);
                             casesBases.add(c2);
+                        }
+
                     }
                     // Création des obstacles
                     else {
@@ -87,11 +103,12 @@ public class Carte {
                     }
 
                 }
-                map.put(p,c);
+                map.put(p, c);
                 if(i != j)
                     map.put(p2,c2);
             }
-        System.out.println();
+        domaines.add(dom1);
+        domaines.add(dom2);
         // End of user code
     }
 
