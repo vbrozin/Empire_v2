@@ -152,29 +152,16 @@ public class Carte {
         return map.get(p);
     }
 
-    /**
-     * Détruit l'unité en question
-     * @param dead l'unité qui doit disparaître
-     */
-    public void detruireUnite(Unite dead) {
-        System.out.println("************ Une unité de "+ dead.getBase().getNom() + " est mort ************");
-        // On retire l'unité de la case
-        dead.getCase().retirerUnite(dead);
-        // On retire l'unité de la base
-        dead.getBase().removeUnites(dead);
-        dead = null;
-        //On fait appel au garbage collector
-		System.gc();
-    }
 
     /**
      * Renvoie les cases des autres bases
      *
      */
-    public ArrayList<Case<Point>> getCasesRessources() {
+    public ArrayList<Case<Point>> getCasesRessources(TypeRessource type) {
         ArrayList<Case<Point>> cases = new ArrayList<Case<Point>>();
         for(Ressource r : ressources.keySet()) {
-            cases.add(ressources.get(r));
+            if(r.getTypeRessource() == type)
+                cases.add(ressources.get(r));
         }
         return cases;
     }

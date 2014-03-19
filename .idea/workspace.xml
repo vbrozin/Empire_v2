@@ -5,17 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b206447-f9a8-4f33-9e3c-e1c4fdad0239" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/agents/Agent.java" afterPath="$PROJECT_DIR$/src/main/java/agents/Agent.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/agents/Attaquant.java" afterPath="$PROJECT_DIR$/src/main/java/agents/Attaquant.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/agents/Base.java" afterPath="$PROJECT_DIR$/src/main/java/agents/Base.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/environment/Carte.java" afterPath="$PROJECT_DIR$/src/main/java/environment/Carte.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/environment/Case.java" afterPath="$PROJECT_DIR$/src/main/java/environment/Case.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/environment/Domaine.java" afterPath="$PROJECT_DIR$/src/main/java/environment/Domaine.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/data/Constantes.java" afterPath="$PROJECT_DIR$/src/main/java/data/Constantes.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/agents/Defenseur.java" afterPath="$PROJECT_DIR$/src/main/java/agents/Defenseur.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/gui/GridOfSprites.java" afterPath="$PROJECT_DIR$/src/main/java/gui/GridOfSprites.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/test/Main.java" afterPath="$PROJECT_DIR$/src/main/java/test/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/environment/Jeu.java" afterPath="$PROJECT_DIR$/src/main/java/environment/Jeu.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/agents/Recolteur.java" afterPath="$PROJECT_DIR$/src/main/java/agents/Recolteur.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/agents/Unite.java" afterPath="$PROJECT_DIR$/src/main/java/agents/Unite.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/test/test.java" afterPath="$PROJECT_DIR$/src/main/java/test/test.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/test/testRessource.java" afterPath="$PROJECT_DIR$/src/main/java/test/testRessource.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Empire_v2.iws" />
@@ -28,7 +27,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CreatePatchCommitExecutor">
-    <option name="PATCH_PATH" value="" />
+    <option name="PATCH_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
@@ -84,16 +83,16 @@
       <file leaf-file-name="Recolteur.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/agents/Recolteur.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="124" column="32" selection-start="3275" selection-end="3275" vertical-scroll-proportion="0.0" vertical-offset="1320" max-vertical-offset="2205">
+            <state line="22" column="37" selection-start="495" selection-end="495" vertical-scroll-proportion="-0.0" vertical-offset="150" max-vertical-offset="2325">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GridOfSprites.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="GridOfSprites.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/gui/GridOfSprites.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="104" column="31" selection-start="3509" selection-end="3509" vertical-scroll-proportion="0.26056337" vertical-offset="1239" max-vertical-offset="3465">
+            <state line="91" column="16" selection-start="2941" selection-end="2941" vertical-scroll-proportion="0.0" vertical-offset="1155" max-vertical-offset="3390">
               <folding>
                 <element signature="e#2483#2489#0" expanded="true" />
               </folding>
@@ -104,7 +103,46 @@
       <file leaf-file-name="Case.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/environment/Case.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="40" selection-start="571" selection-end="571" vertical-scroll-proportion="0.0" vertical-offset="23" max-vertical-offset="1740">
+            <state line="77" column="5" selection-start="1586" selection-end="1586" vertical-scroll-proportion="0.0" vertical-offset="1343" max-vertical-offset="1785">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IAgent.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/agents/IAgent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="23" column="30" selection-start="393" selection-end="393" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="435">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Agent.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/agents/Agent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="84" column="57" selection-start="1521" selection-end="1521" vertical-scroll-proportion="0.18552037" vertical-offset="1118" max-vertical-offset="1560">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#514#515#0" expanded="true" />
+                <element signature="e#543#544#0" expanded="true" />
+                <element signature="e#648#649#0" expanded="true" />
+                <element signature="e#679#680#0" expanded="true" />
+                <element signature="e#770#771#0" expanded="true" />
+                <element signature="e#800#801#0" expanded="true" />
+                <element signature="e#889#890#0" expanded="true" />
+                <element signature="e#918#919#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Jeu.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/environment/Jeu.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="167" column="0" selection-start="3687" selection-end="3687" vertical-scroll-proportion="-21.192308" vertical-offset="1699" max-vertical-offset="2745">
               <folding />
             </state>
           </provider>
@@ -113,32 +151,27 @@
       <file leaf-file-name="Domaine.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/environment/Domaine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="35" selection-start="755" selection-end="755" vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="585">
-              <folding>
-                <element signature="e#270#283#0" expanded="true" />
-              </folding>
+            <state line="30" column="35" selection-start="755" selection-end="755" vertical-scroll-proportion="0.0" vertical-offset="293" max-vertical-offset="735">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Carte.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/environment/Carte.java">
+      <file leaf-file-name="Constantes.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/data/Constantes.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="73" column="49" selection-start="2217" selection-end="2217" vertical-scroll-proportion="-10.961538" vertical-offset="630" max-vertical-offset="2550">
-              <folding>
-                <element signature="e#804#813#0" expanded="true" />
-              </folding>
+            <state line="27" column="4" selection-start="627" selection-end="627" vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="570">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Base.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/agents/Base.java">
+      <file leaf-file-name="IUniteLibre.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/agents/IUniteLibre.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="357" column="43" selection-start="10086" selection-end="10086" vertical-scroll-proportion="-6.0384617" vertical-offset="4763" max-vertical-offset="6975">
+            <state line="25" column="23" selection-start="496" selection-end="496" vertical-scroll-proportion="0.0" vertical-offset="128" max-vertical-offset="600">
               <folding>
-                <element signature="e#3410#3423#0" expanded="true" />
-                <element signature="e#3873#3886#0" expanded="true" />
+                <element signature="n#!!doc" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -147,7 +180,7 @@
       <file leaf-file-name="ImageIO.java" pinned="false" current="false" current-in-tab="false">
         <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.7.0_25.jdk/Contents/Home/src.zip!/javax/imageio/ImageIO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1300" column="0" selection-start="45883" selection-end="45883" vertical-scroll-proportion="0.0" vertical-offset="18415" max-vertical-offset="23445">
+            <state line="1300" column="0" selection-start="45883" selection-end="45883" vertical-scroll-proportion="0.0" vertical-offset="19500" max-vertical-offset="24375">
               <folding />
             </state>
           </provider>
@@ -169,27 +202,28 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/gui/testVAL.java" />
         <option value="$PROJECT_DIR$/src/main/java/environment/Ressource.java" />
-        <option value="$PROJECT_DIR$/src/main/java/agents/Defenseur.java" />
-        <option value="$PROJECT_DIR$/src/main/java/agents/Agent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/agents/IAgent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/environment/Jeu.java" />
         <option value="$PROJECT_DIR$/src/main/java/agents/IUniteLibre.java" />
-        <option value="$PROJECT_DIR$/src/main/java/agents/Attaquant.java" />
         <option value="$PROJECT_DIR$/src/main/java/test/testRessource.java" />
         <option value="$PROJECT_DIR$/src/main/java/test/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/test/test.java" />
-        <option value="$PROJECT_DIR$/src/main/java/agents/Unite.java" />
         <option value="$PROJECT_DIR$/src/main/java/environment/Domaine.java" />
         <option value="$PROJECT_DIR$/src/main/java/environment/Case.java" />
-        <option value="$PROJECT_DIR$/src/main/java/environment/Carte.java" />
+        <option value="$PROJECT_DIR$/src/main/java/agents/IAgent.java" />
+        <option value="$PROJECT_DIR$/src/main/java/agents/Agent.java" />
+        <option value="$PROJECT_DIR$/src/main/java/agents/Attaquant.java" />
         <option value="$PROJECT_DIR$/src/main/java/agents/Recolteur.java" />
+        <option value="$PROJECT_DIR$/src/main/java/environment/Carte.java" />
+        <option value="$PROJECT_DIR$/src/main/java/agents/Defenseur.java" />
+        <option value="$PROJECT_DIR$/src/main/java/agents/Unite.java" />
+        <option value="$PROJECT_DIR$/src/main/java/environment/Jeu.java" />
         <option value="$PROJECT_DIR$/src/main/java/agents/Base.java" />
         <option value="$PROJECT_DIR$/src/main/java/gui/GridOfSprites.java" />
+        <option value="$PROJECT_DIR$/src/main/java/data/Constantes.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="5" />
+    <option name="x" value="4" />
     <option name="y" value="22" />
     <option name="width" value="1276" />
     <option name="height" value="778" />
@@ -220,7 +254,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -425,6 +458,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -440,6 +474,8 @@
     <property name="dynamic.classpath" value="false" />
     <property name="FullScreen" value="false" />
     <property name="restartRequiresConfirmation" value="true" />
+    <property name="OverrideImplement.combined" value="true" />
+    <property name="OverrideImplement.overriding.sorted" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -507,19 +543,6 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method />
-    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -545,6 +568,19 @@
       <envs />
       <properties />
       <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -728,11 +764,15 @@
       <created>1394819361113</created>
       <updated>1394819361113</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Mise à jour de l'interface graphique">
+      <created>1394837660457</created>
+      <updated>1394837660457</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="5" y="22" width="1276" height="778" extended-state="6" />
+    <frame x="4" y="22" width="1276" height="778" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -740,6 +780,7 @@
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.45557123" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2693935" sideWeight="0.60109717" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30465445" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -755,9 +796,8 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30465445" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.45685998" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -782,7 +822,8 @@
     <MESSAGE value="mise à jour unités" />
     <MESSAGE value="Matrice symétrique" />
     <MESSAGE value="Matrice symétrique&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Matrice symétrique&#10;" />
+    <MESSAGE value="Mise à jour de l'interface graphique" />
+    <option name="LAST_COMMIT_MESSAGE" value="Mise à jour de l'interface graphique" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -816,33 +857,32 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/environment/Carte.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="101" column="10" selection-start="2233" selection-end="2233" vertical-scroll-proportion="0.0" vertical-offset="1515" max-vertical-offset="1695">
-          <folding>
-            <element signature="e#804#813#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/environment/Case.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="49" column="35" selection-start="1017" selection-end="1017" vertical-scroll-proportion="0.0" vertical-offset="735" max-vertical-offset="1365">
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/agents/Base.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="180" column="0" selection-start="4270" selection-end="4270" vertical-scroll-proportion="0.0" vertical-offset="2700" max-vertical-offset="4635">
-          <folding>
-            <element signature="e#3410#3423#0" expanded="true" />
-            <element signature="e#3873#3886#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/agents/Unite.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="58" column="0" selection-start="1371" selection-end="1371" vertical-scroll-proportion="0.0" vertical-offset="870" max-vertical-offset="4470">
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -870,33 +910,32 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/environment/Carte.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="100" column="44" selection-start="2147" selection-end="2147" vertical-scroll-proportion="0.0" vertical-offset="1500" max-vertical-offset="1665">
-          <folding>
-            <element signature="e#804#813#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/environment/Case.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="83" column="18" selection-start="1715" selection-end="1715" vertical-scroll-proportion="0.0" vertical-offset="1245" max-vertical-offset="1425">
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/agents/Base.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="27" column="13" selection-start="482" selection-end="482" vertical-scroll-proportion="0.0" vertical-offset="405" max-vertical-offset="4635">
-          <folding>
-            <element signature="e#3410#3423#0" expanded="true" />
-            <element signature="e#3873#3886#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/agents/Unite.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="244" column="53" selection-start="6058" selection-end="6058" vertical-scroll-proportion="0.0" vertical-offset="3660" max-vertical-offset="3735">
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -931,23 +970,25 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/environment/Carte.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="100" column="44" selection-start="2147" selection-end="2147" vertical-scroll-proportion="0.0" vertical-offset="1500" max-vertical-offset="1665">
-          <folding>
-            <element signature="e#804#813#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/environment/Case.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="83" column="18" selection-start="1715" selection-end="1715" vertical-scroll-proportion="0.0" vertical-offset="1245" max-vertical-offset="1425">
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/agents/Unite.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="218" column="0" selection-start="5192" selection-end="5192" vertical-scroll-proportion="0.0" vertical-offset="3270" max-vertical-offset="3735">
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1017,20 +1058,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/agents/IAgent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="7" selection-start="235" selection-end="235" vertical-scroll-proportion="0.40723982" vertical-offset="0" max-vertical-offset="442">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/agents/IUniteLibre.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="0" selection-start="642" selection-end="642" vertical-scroll-proportion="0.0" vertical-offset="158" max-vertical-offset="600">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/agents/AEtoile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="87" column="17" selection-start="2903" selection-end="2903" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1425">
@@ -1038,30 +1065,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/agents/Attaquant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="38" selection-start="769" selection-end="769" vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="1440">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/environment/FabriqueNoeud.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="26" column="45" selection-start="883" selection-end="883" vertical-scroll-proportion="0.0" vertical-offset="794" max-vertical-offset="1260">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/agents/Agent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="17" selection-start="207" selection-end="207" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/data/Constantes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="3" selection-start="354" selection-end="354" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="480">
           <folding />
         </state>
       </provider>
@@ -1087,27 +1093,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/agents/Defenseur.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="23" selection-start="1037" selection-end="1037" vertical-scroll-proportion="0.7861507" vertical-offset="244" max-vertical-offset="735">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/agents/Unite.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="213" column="27" selection-start="5732" selection-end="5732" vertical-scroll-proportion="0.0" vertical-offset="2526" max-vertical-offset="3780">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/environment/Jeu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="5" selection-start="1208" selection-end="1208" vertical-scroll-proportion="46.153847" vertical-offset="1875" max-vertical-offset="2730">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.7.0_25.jdk/Contents/Home/src.zip!/javax/imageio/ImageIO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1300" column="0" selection-start="45883" selection-end="45883" vertical-scroll-proportion="0.0" vertical-offset="18423" max-vertical-offset="23445">
@@ -1115,53 +1100,118 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/environment/Carte.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/environment/Domaine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="73" column="49" selection-start="2217" selection-end="2217" vertical-scroll-proportion="-10.961538" vertical-offset="630" max-vertical-offset="2550">
-          <folding>
-            <element signature="e#804#813#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/environment/Case.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="40" selection-start="571" selection-end="571" vertical-scroll-proportion="0.0" vertical-offset="23" max-vertical-offset="1740">
+        <state line="30" column="35" selection-start="755" selection-end="755" vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="585">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/environment/Domaine.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/agents/IUniteLibre.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="35" selection-start="755" selection-end="755" vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="585">
+        <state line="25" column="23" selection-start="496" selection-end="496" vertical-scroll-proportion="0.0" vertical-offset="128" max-vertical-offset="600">
           <folding>
-            <element signature="e#270#283#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/agents/Base.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="357" column="43" selection-start="10086" selection-end="10086" vertical-scroll-proportion="-6.0384617" vertical-offset="4763" max-vertical-offset="6975">
-          <folding>
-            <element signature="e#3410#3423#0" expanded="true" />
-            <element signature="e#3873#3886#0" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/agents/Recolteur.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="124" column="32" selection-start="3275" selection-end="3275" vertical-scroll-proportion="0.0" vertical-offset="915" max-vertical-offset="2205">
+        <state line="22" column="37" selection-start="495" selection-end="495" vertical-scroll-proportion="-0.0" vertical-offset="150" max-vertical-offset="2325">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/agents/Attaquant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="54" column="25" selection-start="1176" selection-end="1176" vertical-scroll-proportion="0.43438914" vertical-offset="498" max-vertical-offset="1215">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/agents/Defenseur.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="113" column="53" selection-start="3489" selection-end="3489" vertical-scroll-proportion="0.54545456" vertical-offset="1326" max-vertical-offset="2595">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/agents/IAgent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="30" selection-start="393" selection-end="393" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="435">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/agents/Base.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="305" column="5" selection-start="8536" selection-end="8536" vertical-scroll-proportion="0.0" vertical-offset="3923" max-vertical-offset="6945">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/gui/GridOfSprites.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="104" column="31" selection-start="3509" selection-end="3509" vertical-scroll-proportion="0.26056337" vertical-offset="1239" max-vertical-offset="3465">
+        <state line="91" column="16" selection-start="2941" selection-end="2941" vertical-scroll-proportion="0.0" vertical-offset="1155" max-vertical-offset="3390">
           <folding>
             <element signature="e#2483#2489#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/agents/Unite.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="1" selection-start="387" selection-end="387" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="960">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/data/Constantes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="4" selection-start="627" selection-end="627" vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="570">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/environment/Carte.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="140" column="22" selection-start="4250" selection-end="4250" vertical-scroll-proportion="0.0" vertical-offset="1770" max-vertical-offset="2355">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/environment/Jeu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="167" column="0" selection-start="3687" selection-end="3687" vertical-scroll-proportion="-21.192308" vertical-offset="1699" max-vertical-offset="2745">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/environment/Case.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="77" column="5" selection-start="1586" selection-end="1586" vertical-scroll-proportion="0.0" vertical-offset="1343" max-vertical-offset="1785">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/agents/Agent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="84" column="57" selection-start="1521" selection-end="1521" vertical-scroll-proportion="0.18552037" vertical-offset="1118" max-vertical-offset="1560">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#514#515#0" expanded="true" />
+            <element signature="e#543#544#0" expanded="true" />
+            <element signature="e#648#649#0" expanded="true" />
+            <element signature="e#679#680#0" expanded="true" />
+            <element signature="e#770#771#0" expanded="true" />
+            <element signature="e#800#801#0" expanded="true" />
+            <element signature="e#889#890#0" expanded="true" />
+            <element signature="e#918#919#0" expanded="true" />
           </folding>
         </state>
       </provider>

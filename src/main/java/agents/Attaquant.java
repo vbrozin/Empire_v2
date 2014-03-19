@@ -21,7 +21,7 @@ import java.awt.Point;
 *
 */
 
-public class Attaquant extends Unite implements IUniteLibre {
+public class Attaquant extends Defenseur implements IUniteLibre {
 
     // Start of user code to add fields for Attaquant
 
@@ -44,9 +44,9 @@ public class Attaquant extends Unite implements IUniteLibre {
     @Override
     public void seDeplacer(Case caseLibre) {
         if(caseLibre != null && caseLibre.estLibre()) {
-            maCase.retirerUnite(this);
-            maCase = caseLibre;
-            maCase.ajouterUnite(this);
+            getCase().retirerUnite(this);
+            setCase(caseLibre);
+            getCase().ajouterUnite(this);
         }
     }
 
@@ -57,7 +57,7 @@ public class Attaquant extends Unite implements IUniteLibre {
      * @param cible
      */
     public void suivreUnite(IAgent cible) {
-        Case<Point> caseCalculee = maBase.calculerChemin(maCase, cible.getCase());
+        Case<Point> caseCalculee = maBase.calculerChemin(getCase(), cible.getCase());
         seDeplacer(caseCalculee);
     }
 
@@ -71,7 +71,7 @@ public class Attaquant extends Unite implements IUniteLibre {
         if(ennemi != null) {
             double distance = calculerDistance(ennemi);
             if(distance <= porteeVision) {
-                if(distance <= porteeAttaque)
+                if(distance <= porteeAction)
                     attaquer(ennemi);
                 else
                     suivreUnite(ennemi);
@@ -79,21 +79,6 @@ public class Attaquant extends Unite implements IUniteLibre {
         }
     }
 
-    /**
-     * Description of the method reagir.
-     * On cherche une unite ennemie dans la portee de vision, si il y en a une,
-     * on verifie la distance est on attaque ou on se deplace vers l'unite ennemie selon le cas.
-     */
-    public boolean ennemiProche() {
-        IAgent ennemi = calculerUnitePlusProche();
-        boolean b = false;
-        if(ennemi != null) {
-            if(calculerDistance(ennemi) <= porteeVision)
-                return true;
-            else
-                return false;
-        }
-        return b;
-    }
+
 
 }

@@ -24,27 +24,6 @@ import java.util.*;
 */
 
 public class Base extends Agent implements IAgent, Constantes {
-    private int bois;
-    private int nourriture;
-    private List<Unite> unites;
-    private String nom;
-    private Carte carte;
-    private Domaine domaine;
-
-    public Jeu getJeu() {
-        return jeu;
-    }
-
-    public void setJeu(Jeu jeu) {
-        this.jeu = jeu;
-    }
-
-    private Jeu jeu;
-
-
-    // Start of user code to add fields for Base
-
-    // End of user code
 
 
     Successeurs<Point> successorComputer = new Successeurs<Point>() {
@@ -65,14 +44,14 @@ public class Base extends Agent implements IAgent, Constantes {
             if (x > 0) {
                 resultat.add(new Point(x - 1, y));
             }
-            if (x < carte.getLargeur() ) {
+            if (x < getCarte().getLargeur() ) {
                 resultat.add(new Point(x + 1, y));
             }
 
             if (y > 0) {
                 resultat.add(new Point(x, y - 1));
             }
-            if (y < carte.getHauteur() ) {
+            if (y < getCarte().getHauteur() ) {
                 resultat.add(new Point(x, y + 1));
             }
             if(n.getParent() != null) {
@@ -81,14 +60,13 @@ public class Base extends Agent implements IAgent, Constantes {
             return resultat;
         }
     };
-
     FabriqueNoeud<Point> fabriqueNoeud = new FabriqueNoeud<Point>() {
         @Override
         protected double computeReel(final Point parentIndex, final Point index) {
             if(parentIndex != null && parentIndex.equals(index)) {
                 return 0;
             }
-            Case<Point> c = carte.getCase(index);
+            Case<Point> c = getCarte().getCase(index);
             if(c!= null && c.estLibre() && !c.estObstacle())
                 return 1;
 
@@ -101,6 +79,13 @@ public class Base extends Agent implements IAgent, Constantes {
             return Math.abs(index.getX()-goal.getX()) + Math.abs(index.getY()-goal.getY());
         }
     };
+    private int bois;
+    private int nourriture;
+    private List<Defenseur> defenseurs;
+    private List<Recolteur> recolteurs;
+    private String nom;
+    private Domaine domaine;
+    private Jeu jeu;
 
 
 
@@ -109,15 +94,31 @@ public class Base extends Agent implements IAgent, Constantes {
      */
     public Base(int bois, int nourriture, int pv, String nom, Carte c, Domaine dom) {
         // Start of user code for constructor Base
-        super(pv);
+        super(pv, dom.getCaseBase(), c);
         this.bois = bois;
         this.nourriture = nourriture;
         this.nom = nom;
-        this.carte = c;
-        this.unites = new ArrayList<Unite>();
+        this.defenseurs = new ArrayList<Defenseur>();
+        this.recolteurs = new ArrayList<Recolteur>();
         this.domaine = dom;
         this.domaine.getCaseBase().ajouterUnite(this);
         // End of user code
+    }
+
+    public Jeu getJeu() {
+        return jeu;
+    }
+
+    public void setJeu(Jeu jeu) {
+        this.jeu = jeu;
+    }
+
+    public int getNourriture() {
+        return nourriture;
+    }
+
+    public int getBois() {
+        return bois;
     }
 
     public Case<Point> getPositionDePop() {
@@ -153,76 +154,95 @@ public class Base extends Agent implements IAgent, Constantes {
     }
 
     public void creerMele() {
-        if(nourriture >= MELE_COUT) {
+        if(nourriture >= MELE_COUT && defenseurs.size() < MAX_ATTAQUANTS + MAX_DEFENSEURS) {
             Case<Point> cas = getPositionDePop();
             if(cas != null)
             {
                 nourriture -= MELE_COUT;
-                Attaquant at = new Attaquant(this, MELE_PV, MELE_AT, MELE_P_AT, MELE_P_V, cas, carte);
-                unites.add(at);
+                Attaquant at = new Attaquant(this, MELE_PV, MELE_AT, MELE_P_AT, MELE_P_V, cas, getCarte());
             }
         }
     }
 
     public void creerArcher() {
-        if(nourriture >= ARCHE_COUT) {
+        if(nourriture >= ARCHE_COUT && defenseurs.size() < MAX_ATTAQUANTS + MAX_DEFENSEURS) {
             Case<Point> cas = getPositionDePop();
             if(cas != null)
             {
                 nourriture -= ARCHE_COUT;
-                Attaquant at = new Attaquant(this, ARCHE_PV, ARCHE_AT, ARCHE_P_AT, ARCHE_P_V, cas, carte);
-                unites.add(at);
+                Attaquant at = new Attaquant(this, ARCHE_PV, ARCHE_AT, ARCHE_P_AT, ARCHE_P_V, cas, getCarte());
             }
         }
     }
 
      public void creerRecolteur() {
-        if(nourriture >= RECOL_COUT) {
+        if(nourriture >= RECOL_COUT && recolteurs.size() < MAX_RECOLTEURS) {
             Case<Point> cas = getPositionDePop();
             if(cas != null)
             {
                 nourriture -= RECOL_COUT;
-                Recolteur at = new Recolteur(this, RECOL_PV, RECOL_AT, RECOL_P_R, 0, cas, carte, RECOL_CAP);
-                unites.add(at);
+                Recolteur at = new Recolteur(this, RECOL_PV, RECOL_AT, RECOL_P_R, 0, cas, getCarte(), RECOL_CAP);
             }
         }
     }
 
     public void creerDefenseur() {
-        if(bois >= DEF_COUT) {
+        if(bois >= DEF_COUT && defenseurs.size() < MAX_DEFENSEURS) {
             Case<Point> cas = getPositionDef();
             if(cas != null)
             {
                 bois -= DEF_COUT;
-                Defenseur at = new Defenseur(this, DEF_PV, DEF_AT, DEF_P_AT, DEF_P_V, cas, carte);
-                unites.add(at);
+                Defenseur at = new Defenseur(this, DEF_PV, DEF_AT, DEF_P_AT, DEF_P_V, cas, getCarte());
             }
         }
     }
-
 
     /**
      * Return unites.
      * @return unites
      */
-    public List<Unite> getUnites() {
-        return unites;
-    }
-
-    /**
-     * Add a unites to the unites collection.
-     * @param unites_elt Element to add.
-     */
-    public void addUnites(Unite unites_elt) {
-        this.unites.add(unites_elt);
+    public void addDefenseurs(Defenseur d) {
+        this.defenseurs.add(d);
     }
 
     /**
      * Remove a unites to the unites collection.
-     * @param unites_elt Element to remove
+     * @param d Element to remove
      */
-    public void removeUnites(Unite unites_elt) {
-        this.unites.remove(unites_elt);
+    public void removeDefenseurs(Defenseur d) {
+        this.defenseurs.remove(d);
+    }
+
+    /**
+     * Return unites.
+     * @return unites
+     */
+    public List<Defenseur> getDefenseurs() {
+        return defenseurs;
+    }
+
+    /**
+     * Return recolteurs.
+     * @return recolteurs
+     */
+    public void addRecolteurs(Recolteur r) {
+        this.recolteurs.add(r);
+    }
+
+    /**
+     * Remove a unites to the unites collection.
+     * @param r Element to remove
+     */
+    public void removeRecolteurs(Recolteur r) {
+        this.recolteurs.remove(r);
+    }
+
+    /**
+     * Return unites.
+     * @return unites
+     */
+    public List<Recolteur> getRecolteurs() {
+        return recolteurs;
     }
 
     /**
@@ -231,32 +251,6 @@ public class Base extends Agent implements IAgent, Constantes {
      */
     public String getNom() {
         return nom;
-    }
-
-
-
-    /**
-     * Description of the method creerUnite.
-     *
-     * @param choix
-     * @param nombre
-     */
-    public void creerUnite(int choix, int nombre) {
-        // Start of user code for method creerUnite
-
-        // End of user code
-    }
-
-    /**
-     * Description of the method deplacerUnites.
-     *
-     * @param listeUnites
-     * @param caseLibre
-     */
-    public void deplacerUnites(IUniteLibre listeUnites, Case caseLibre) {
-        // Start of user code for method deplacerUnites
-        double k;
-        // End of user code
     }
 
     /**
@@ -276,18 +270,9 @@ public class Base extends Agent implements IAgent, Constantes {
      */
     public void jouer() {
         // Start of user code for method jouer
-        int nbRecolteur = 0;
-        for(Unite u : getUnites()) {
-                String className = u.getClass().getSimpleName();
-                if(className.equals("Recolteur")) {
-                    nbRecolteur++;
-                }
-            }
         // on a toujours autant de récolteur que la moitié du nombre total de ressource (sauf cas ou pas assez de ressources)
-        int temp = (int)Math.floor(carte.getCasesRessources().size()/2);
-        if(nbRecolteur < temp)
-            for(int i=0;i<nbRecolteur-temp-1;i++)
-                creerRecolteur();
+        //int temp = (int)Math.floor(getCarte().getCasesRessources().size()/2);
+        creerRecolteur();
 
         recolter();
 
@@ -299,10 +284,41 @@ public class Base extends Agent implements IAgent, Constantes {
             for(int i=0;i<4;i++)
                 creerArcher();
         }
+
+        creerDefenseur();
         attaquer();
-        if(bois > 100)
-            creerDefenseur();
-        // End of user code
+    }
+
+    public void jouer2() {
+        // Start of user code for method jouer
+        int nbRecolteur = recolteurs.size();
+        // on a toujours autant de récolteur que la moitié du nombre total de ressource (sauf cas ou pas assez de ressources)
+        //int temp = (int)Math.floor(getCarte().getCasesRessources().size()/2);
+        if(nbRecolteur < MAX_RECOLTEURS)
+            creerRecolteur();
+
+        recolter();
+        while(nourriture > ARCHE_COUT && defenseurs.size() < MAX_DEFENSEURS + MAX_ATTAQUANTS) {
+            creerArcher();
+        }
+        creerDefenseur();
+        attaquer();
+    }
+
+    public void jouer3() {
+        // Start of user code for method jouer
+        int nbRecolteur = recolteurs.size();
+        // on a toujours autant de récolteur que la moitié du nombre total de ressource (sauf cas ou pas assez de ressources)
+        //int temp = (int)Math.floor(getCarte().getCasesRessources().size()/2);
+        if(nbRecolteur < MAX_RECOLTEURS)
+            creerRecolteur();
+
+        recolter(TypeRessource.NOURRITURE);
+        while(nourriture > ARCHE_COUT && defenseurs.size() < MAX_DEFENSEURS + MAX_ATTAQUANTS) {
+            creerMele();
+        }
+        creerDefenseur();
+        attaquer();
     }
 
     /**
@@ -315,24 +331,20 @@ public class Base extends Agent implements IAgent, Constantes {
         Case<Point> cible = calculerCasePlusProche(cases);
         if(cible != null) {
             // Demander aux attaquants de se diriger vers la cible
-            ArrayList<Attaquant> attaquants = new ArrayList<Attaquant>();
-            for(Unite u : getUnites()) {
-                String className = u.getClass().getSimpleName();
-                if(className.equals("Attaquant")) {
-                    attaquants.add((Attaquant) u);
-                }
-            }
-            for(Attaquant at : attaquants) {
-                if(at.getPvRestant() > 0) {
+            for(Defenseur d : defenseurs) {
+                if(d.getPvRestant() > 0) {
                     // Priorité par rapport à la demande de la base
-                    if(at.ennemiProche()) {
-                        at.reagir();
-                        System.out.println("On attaque ou on suit");
+                    if(d.ennemiProche()) {
+                        d.reagir();
                     }
                     // But final qui est d'aller attaquer la cible
                     else {
-                        Case<Point> caseCible = calculerChemin(at.getCase(), cible);
-                        at.seDeplacer(caseCible);
+                        String className = d.getClass().getSimpleName();
+                        if(className.equals("Attaquant")) {
+                            Attaquant at = (Attaquant) d;
+                            Case<Point> caseCible = calculerChemin(at.getCase(), cible);
+                            at.seDeplacer(caseCible);
+                        }
                     }
                 }
             }
@@ -347,78 +359,65 @@ public class Base extends Agent implements IAgent, Constantes {
      *
      */
     public void recolter() {
-        ArrayList<Case<Point>> cases = carte.getCasesRessources();
+        ArrayList<Case<Point>> cases = getCarte().getCasesRessources(TypeRessource.BOIS);
         // Calcul de ressource la plus proche
         Case<Point> bois = calculerCasePlusProche(cases);
+        cases = getCarte().getCasesRessources(TypeRessource.NOURRITURE);
         Case<Point> nourriture = calculerCasePlusProche(cases);
 
 
         if(bois != null || nourriture != null) {
-            // Demander aux recolteur de lancer la procedure de recolte (leur réagir)
-            ArrayList<Recolteur> recolteurs = new ArrayList<Recolteur>();
-            for(Unite u : getUnites()) {
-                String className = u.getClass().getSimpleName();
-                if(className.equals("Recolteur")) {
-                    recolteurs.add((Recolteur) u);
+            if(bois == null) {
+                for(Recolteur rec : recolteurs) {
+                    rec.reagir(nourriture);
                 }
             }
-            for(Recolteur rec : recolteurs) {
+            if(nourriture == null) {
+                for(Recolteur rec : recolteurs) {
+                    rec.reagir(bois);
+                }
+            }
+            if(bois != null && nourriture != null) {
 
-                rec.reagir(bois);
-                // ou nourriture faut trouver un moyen de pas les faire changer de ressource cible en cours de route.
-                // soit faire 2 fct récolterBois et recolterNourriture
-                // soit recolterPlusProche
-                // a savoir qu'ils rentrent pas à la base tant qu'ils sont pas plein donc quand la ressource s'épuisent, le calcul de ressourcePlus proche change et l'unité va partir ailleur
+            }
+            // Demander aux recolteur de lancer la procedure de recolte (leur réagir)
+            Iterator iter = recolteurs.iterator();
+            int size = recolteurs.size();
+            int i = 1;
+            for(Recolteur rec : recolteurs) {
+                if(i <= size/2)
+                    rec.reagir(bois);
+                else
+                    rec.reagir(nourriture);
+                i++;
             }
         }
     }
 
+    /**
+     * Stratégie de recolter
+     *
+     */
+    public void recolter(TypeRessource type) {
+        ArrayList<Case<Point>> cases = getCarte().getCasesRessources(type);
+        // Calcul de ressource la plus proche
+        Case<Point> casePlusProche = calculerCasePlusProche(cases);
 
 
+        if(casePlusProche != null) {
+            for(Recolteur rec : recolteurs) {
+                rec.reagir(casePlusProche);
+            }
+        }
+    }
 
     /**
      * Description of the method reagir.
+     * action réactive de l'agent
      */
     @Override
     public void reagir() {
-        final int width = carte.getLargeur();
-        final int height = carte.getHauteur();
-        final AEtoile<Point> astart = new AEtoile<Point>(successorComputer, fabriqueNoeud);
-        final List<Point> result = astart.compute(new Point(0,0), new Point(width-1,height-1));
-        //On intégre le résultat dans la matrice de base, et on l'affiche
-        String [][] matrix = new String[height][width];
-        for(final Point point : result) {
-            System.out.println((int) point.getX());
-            System.out.println((int) point.getY());
-            matrix[(int) point.getY()][(int) point.getX()] = "XXXX";
-        }
-        displayMatrix(matrix);
-    }
 
-    /**
-     * Affiche la matrice dans la sortie standard
-     *
-     * @param matrix la matrice a afficher
-     */
-    public static void displayMatrix(final String[][] matrix) {
-        final StringBuilder result = new StringBuilder();
-        for (int col = 0; col < matrix[0].length; ++col) {
-            result.append("___");
-        }
-        result.append('\n');
-        for (int line = 0; line < matrix.length; ++line) {
-            for (int col = 0; col < matrix[line].length; ++col) {
-                result.append(' ');
-                result.append(matrix[line][col]);
-                result.append(' ');
-            }
-
-            result.append('\n');
-        }
-        for (int col = 0; col < matrix[0].length; ++col) {
-            result.append("___");
-        }
-        System.out.println(result);
     }
 
     /**
@@ -450,25 +449,28 @@ public class Base extends Agent implements IAgent, Constantes {
         return resultat;
     }
 
-    public void subirDegats(int pvRestant) {
-        if(pvRestant <= 0) {
-            pv = 0;
+    public void subirDegats(int degats) {
+        super.subirDegats(degats);
+        if(getPvRestant() == 0) {
             jeu.removeBases(this);
+            for(Defenseur d : defenseurs) {
+                d.getCase().retirerUnite(d);
+            }
+            for(Recolteur d : recolteurs) {
+                d.getCase().retirerUnite(d);
+            }
+            defenseurs = new ArrayList<Defenseur>();
+            recolteurs = new ArrayList<Recolteur>();
             getCase().retirerUnite(this);
         }
-
-        else
-            this.pv = pvRestant;
     }
 
     public Base getBase() {
         return this;
     }
-    public int getPvRestant() {
-        return pv;
-    }
 
     // Start of user code to add methods for Base
+
     /**
      * Retourne la case ou doit se deplacer une unité desirant se rendre à la case destination
      * @return res
@@ -479,7 +481,7 @@ public class Base extends Agent implements IAgent, Constantes {
         final AEtoile<Point> astart = new AEtoile<Point>(successorComputer, fabriqueNoeud);
         final List<Point> result = astart.compute(caseUnite.getIndex(), destination.getIndex());
         if(result.size() > 1) {
-                 res = (Case<Point>)carte.getMap().get(result.get(1));
+                 res = (Case<Point>)getCarte().getMap().get(result.get(1));
         }
         else {
                 System.out.println("Pas de déplacement possible");

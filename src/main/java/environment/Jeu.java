@@ -160,8 +160,9 @@ public class Jeu {
      */
     public void initTour() {
         playedBases = new ArrayList<Base>();
-        for(Base b : bases)
-            playedBases.add(b);
+        playedBases.addAll(bases);
+        //for(Base b : bases)
+        //    playedBases.add(b);
         t++;
     }
 

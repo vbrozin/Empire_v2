@@ -72,25 +72,14 @@ public class GridOfSprites extends JFrame implements ActionListener{
         Carte carte = new Carte(matrix);
         Domaine dom1 = carte.getDomaines().get(0);
         Domaine dom2 = carte.getDomaines().get(1);
-        Base b1 = new Base(2000,2000,50,"blue",carte, dom1);
+        Base b1 = new Base(1000,2000,50,"blue",carte, dom1);
         int x = carte.getLargeur()-1;
         int y = carte.getHauteur()-1;
-        Base b2 = new Base(2000,2000,50,"red",carte, dom2);
+        Base b2 = new Base(1000,2000,50,"red",carte, dom2);
         ArrayList<Base> bases = new ArrayList<Base>();
         bases.add(b1);
         bases.add(b2);
         Jeu jeu = new Jeu(carte, bases);
-        b1.creerRecolteur();
-        b1.creerRecolteur();
-        b1.creerMele();
-        b1.creerMele();
-        b2.creerRecolteur();
-        b2.creerRecolteur();
-        b2.creerMele();
-        b2.creerMele();
-        //Attaquant u3 = new Attaquant(b1,20,5,1,1,1,5,c.getCase(new Point(1,0)),c,1);
-        //Attaquant u5 = new Attaquant(b2,20,5,1,1,1,5,c.getCase(new Point(x-1,y-1)),c,1);
-        //Attaquant u6 = new Attaquant(b2,20,5,1,1,1,5,c.getCase(new Point(x-1,y)),c,1);
         loadSprites();
         width = boxSize*carte.getLargeur();
         height = boxSize*carte.getHauteur();
@@ -98,24 +87,30 @@ public class GridOfSprites extends JFrame implements ActionListener{
         canvas = new MyCanvas(carte);
         canvas.setPreferredSize(new Dimension(width, height));
         window.getContentPane().add(canvas);
-        bouton.setText("coucou");
-        bouton.addActionListener(this);
         window.pack();
         window.setVisible(true);
-        for(int i=0;i<50;++i) {
-            b1.recolter();
-            b1.attaquer();
-            b2.recolter();
-            b2.attaquer();
-            System.out.println(i);
+        int i = 0;
+        while( i < 500 && !jeu.fini() ) {
+            b1.jouer();
+            b2.jouer2();
+            i++;
+
+            for(Base b : jeu.getBases()) {
+                if(i%20 == 0) {
+                    System.out.println("***********" + i );
+                    System.out.println(b.getNom() + " : bois(" + b.getBois() + "), nourriture(" + b.getNourriture() + ")");
+                    System.out.println(b.getNom() + " : defenseurs(" + b.getDefenseurs().size() + "), recolteurs(" + b.getRecolteurs().size() + ")");
+                }
+            }
             window.getContentPane().revalidate();
             window.getContentPane().repaint();
             try {
-                Thread.sleep(200);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+
 
     }
 

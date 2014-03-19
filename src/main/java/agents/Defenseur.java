@@ -15,6 +15,8 @@ package agents;
 import environment.Carte;
 import environment.Case;
 
+import java.awt.*;
+
 /**
 * Description of the class Defenseur.
 *
@@ -32,7 +34,124 @@ public class Defenseur extends Unite{
     public Defenseur(Base b, int pv, int pt, int pa, double po, Case c, Carte ca) {
         // Start of user code for constructor Unite
         super(b, pv, pt, pa, po, c, ca);
+        b.addDefenseurs(this);
         // End of user code
+    }
+
+    /**
+     * Description of the method calculerUnitePlusProche.
+     *
+     * @return ret
+     */
+    public IAgent calculerUnitePlusProche() {
+        // Start of user code for method calculerUnitePlusProche
+
+        IAgent ret = null;
+        int i=1,j=0,tailleC=0;
+        int posX = (int) this.getCase().getIndex().getX();
+        int posY = (int) this.getCase().getIndex().getY();
+        boolean ennemieTrouve=false;
+        while(!ennemieTrouve && i<= porteeVision)
+        {
+            tailleC = 1+2*i;
+            j=0;
+            while(j<tailleC-1 && !ennemieTrouve)
+            {
+                // ligne du haut ->
+                if(verifierCase(new Point(posX-i+j,posY+i))) {
+                    ret = getCarte().getCase(new Point(posX-i+j,posY+i)).getUnite(0);
+                    ennemieTrouve=true;
+                }
+                // colonne de droite (haut vers bas)
+                if(!ennemieTrouve && verifierCase(new Point(posX+i,posY+i-j))) {
+                    ret = getCarte().getCase(new Point(posX+i,posY+i-j)).getUnite(0);
+                    ennemieTrouve=true;
+                }
+                // ligne du bas <-
+                if(!ennemieTrouve && verifierCase(new Point(posX+i-j,posY-i))) {
+                    ret = getCarte().getCase(new Point(posX+i-j,posY-i)).getUnite(0);
+                    ennemieTrouve=true;
+                }
+                // colonne gauche (bas vers haut)
+                if(!ennemieTrouve && verifierCase(new Point(posX-i,posY-i+j))) {
+                    ret = getCarte().getCase(new Point(posX-i,posY-i+j)).getUnite(0);
+                    ennemieTrouve=true;
+                }
+                j++;
+            }
+            i++;
+        }
+        return ret;
+        // End of user code
+    }
+
+    /**
+     * Description of the method calculerDistance.
+     * Calcul la distance entre l'Unite et une unite ennemie par Pythagore
+     *
+     * @param ennemie
+     * @return ret
+     */
+    public double calculerDistance(IAgent ennemie) {
+        // Start of user code for method calculerDistance
+        double ret = 0;
+        int posX = (int) this.getCase().getIndex().getX();
+        int posY = (int) this.getCase().getIndex().getY();
+        int cX = (int) ennemie.getCase().getIndex().getX();
+        int cY = (int) ennemie.getCase().getIndex().getY();
+        ret = Math.sqrt(Math.pow(posX-cX,2) + Math.pow(posY-cY,2));
+        return ret;
+        // End of user code
+    }
+
+    /**
+     * Description of the method attaquer.
+     *
+     * @param cible
+     */
+    public void attaquer(IAgent cible) {
+        // Start of user code for method attaquer
+        if(calculerDistance(cible) <= porteeAction) {
+            //System.out.println(this.maBase.getNom() + " attaque de " + this.pointAction + " degats sur "+ cible.getBase().getNom() + "  pvRestant = " + (cible.getPvRestant()));
+            cible.subirDegats(pointAction);
+        }
+        // End of user code
+    }
+
+    /**
+     * Description of the method reagir.
+     * On cherche une unite ennemie dans la portee de vision, si il y en a une,
+     * on verifie la distance est on attaque ou on se deplace vers l'unite ennemie selon le cas.
+     */
+    public boolean ennemiProche() {
+        IAgent ennemi = calculerUnitePlusProche();
+        boolean b = false;
+        if(ennemi != null) {
+            if(calculerDistance(ennemi) <= porteeVision)
+                return true;
+            else
+                return false;
+        }
+        return b;
+    }
+
+    // Start of user code to add methods for Unite
+    private boolean verifierCase(Point p) {
+        if(p.getX() >= 0 && p.getY() >= 0 && p.getX() < getCarte().getLargeur() && p.getY() < getCarte().getHauteur()) {
+
+            if(getCarte().getCase(p).estLibre() && getCarte().getCase(p).getUnites().size() != 0){
+                if(getCarte().getCase(p).getUnite(0).getBase() == this.maBase)
+                    return false;
+                else
+                    //System.out.println(map.getCase(p).getUnite(0).getBase().getNom() + " trouvé");
+                    return true;
+            }
+
+            else
+                return false;
+        }
+        else
+            return false;
     }
 
     /**
@@ -41,7 +160,14 @@ public class Defenseur extends Unite{
     public void reagir() {
         IAgent ennemie = calculerUnitePlusProche();
         if(ennemie != null)
-                attaquer(ennemie);
+            attaquer(ennemie);
+    }
+
+    public void subirDegats(int degats) {
+        super.subirDegats(degats);
+        if(getPvRestant() == 0) {
+            getBase().removeDefenseurs(this);
+        }
     }
 
 

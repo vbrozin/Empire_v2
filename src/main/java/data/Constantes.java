@@ -22,12 +22,15 @@ public interface Constantes {
     public int CAPACITE_RECOLTEUR = 100;
     public int HAUTEUR = 30;
     public int LARGEUR = 30;
+    public int MAX_RECOLTEURS = 4;
+    public int MAX_ATTAQUANTS = 10;
+    public int MAX_DEFENSEURS = 4;
 	
 	// Start of user code to add fields for Constantes
     public int MELE_PV  = 30,   MELE_AT     = 6,    MELE_P_AT = 1, MELE_P_V   = 5,  MELE_COUT = 50;
     public int ARCHE_PV = 20,   ARCHE_AT    = 4,    ARCHE_P_AT = 3, ARCHE_P_V = 5,  ARCHE_COUT = 70;
-    public int RECOL_PV = 20,   RECOL_AT    = 5,    RECOL_P_R = 1,  RECOL_COUT = 30, RECOL_CAP = 40;
-    public int DEF_PV   = 50,   DEF_AT      = 5,    DEF_P_AT = 4, DEF_P_V     = 4,  DEF_COUT = 100;
+    public int RECOL_PV = 20,   RECOL_AT    = 30,    RECOL_P_R = 2,  RECOL_COUT = 30, RECOL_CAP = 40;
+    public int DEF_PV   = 50,  DEF_AT      = 5,    DEF_P_AT = 3, DEF_P_V     = 4,  DEF_COUT = 500;
 	// End of user code
 
 	// Start of user code to add methods for Constantes
