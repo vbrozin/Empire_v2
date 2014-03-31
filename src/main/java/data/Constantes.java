@@ -25,6 +25,7 @@ public interface Constantes {
     public int MAX_RECOLTEURS = 4;
     public int MAX_ATTAQUANTS = 10;
     public int MAX_DEFENSEURS = 4;
+    public int BOX_SIZE = 40;
 	
 	// Start of user code to add fields for Constantes
     public int MELE_PV  = 30,   MELE_AT     = 6,    MELE_P_AT = 1, MELE_P_V   = 5,  MELE_COUT = 50;

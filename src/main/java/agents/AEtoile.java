@@ -41,7 +41,7 @@ public class AEtoile<T> {
      * @param goal
      *            la destination finale
      */
-    private void expand(final Noeud<T> node, final T goal) {
+    private void etendre(final Noeud<T> node, final T goal) {
         final T p = node.getIndex();
         final Double minimum = distancesMinimum.get(p);
 
@@ -70,9 +70,9 @@ public class AEtoile<T> {
      * @return la liste des index dans l'ordre représentant le trajet entre les
      *         2 points
      */
-    public List<T> compute(final T start, final T goal) {
+    public List<T> calculer(final T start, final T goal) {
         final Noeud<T> root = fabriqueNoeud.instanciateNode(null, start, goal);
-        expand(root, goal);
+        etendre(root, goal);
         while (true) {
             final Noeud<T> p = paths.poll();
             if (p == null) {
@@ -88,7 +88,7 @@ public class AEtoile<T> {
                 }
                 return result;
             }
-            expand(p, goal);
+            etendre(p, goal);
         }
     }
 }

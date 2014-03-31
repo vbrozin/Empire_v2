@@ -31,9 +31,9 @@ public class Defenseur extends Unite{
     /**
      * Constructor.
      */
-    public Defenseur(Base b, int pv, int pt, int pa, double po, Case c, Carte ca) {
+    public Defenseur(Base b, int pv, int pa, double poa, double pov, Case<Point> c, Carte ca) {
         // Start of user code for constructor Unite
-        super(b, pv, pt, pa, po, c, ca);
+        super(b, pv, pa, poa, pov, c, ca);
         b.addDefenseurs(this);
         // End of user code
     }
@@ -43,7 +43,7 @@ public class Defenseur extends Unite{
      *
      * @return ret
      */
-    public IAgent calculerUnitePlusProche() {
+    protected IAgent calculerUnitePlusProche() {
         // Start of user code for method calculerUnitePlusProche
 
         IAgent ret = null;
@@ -92,7 +92,7 @@ public class Defenseur extends Unite{
      * @param ennemie
      * @return ret
      */
-    public double calculerDistance(IAgent ennemie) {
+    protected double calculerDistance(IAgent ennemie) {
         // Start of user code for method calculerDistance
         double ret = 0;
         int posX = (int) this.getCase().getIndex().getX();
@@ -136,7 +136,7 @@ public class Defenseur extends Unite{
     }
 
     // Start of user code to add methods for Unite
-    private boolean verifierCase(Point p) {
+    protected boolean verifierCase(Point p) {
         if(p.getX() >= 0 && p.getY() >= 0 && p.getX() < getCarte().getLargeur() && p.getY() < getCarte().getHauteur()) {
 
             if(getCarte().getCase(p).estLibre() && getCarte().getCase(p).getUnites().size() != 0){

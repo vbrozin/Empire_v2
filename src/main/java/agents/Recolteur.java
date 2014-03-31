@@ -74,13 +74,20 @@ public class Recolteur extends Unite implements IUniteLibre {
             revenirBase();
     }
 
+    public void subirDegats(int degats) {
+        super.subirDegats(degats);
+        if(getPvRestant() == 0) {
+            getBase().removeRecolteurs(this);
+        }
+    }
+
     /**
      * Description of the method reagirRecolte.
      * Quand l'unite n'est pas pleine, soit elle recolte soit elle se dirige vers un point de recolte
      *
      *@param caseRessource
      */
-    public void reagirRecolte(Case<Point> caseRessource) {
+    private void reagirRecolte(Case<Point> caseRessource) {
         // Start of user code for method reagirRecolte
         if(calculerDistance(caseRessource) <= porteeAction)
             recolter(caseRessource.getRessource());
@@ -96,7 +103,7 @@ public class Recolteur extends Unite implements IUniteLibre {
      *
      * @param ressource
      */
-    public void recolter(Ressource ressource) {
+    private void recolter(Ressource ressource) {
         // Start of user code for method recolter
         // S'il ne reste plus qu'une petite quantite, on vide la ressource
         int n = ressource.getQuantite();
@@ -127,7 +134,7 @@ public class Recolteur extends Unite implements IUniteLibre {
      * Sinon, elle se dirige vers la base
      *
      */
-    public void revenirBase() {
+    private void revenirBase() {
         // Start of user code for method revenirBase
         if(calculerDistance(maBase.getCase()) <= porteeAction)
             deposer();
@@ -142,19 +149,14 @@ public class Recolteur extends Unite implements IUniteLibre {
      * Description of the method deposer.
      *L'unité dépose les ressources dans la base
      */
-    public void deposer() {
+    private void deposer() {
         // Start of user code for method deposer
         maBase.incrementerRessource(bois, nourriture);
         bois = nourriture = 0;
         // End of user code
     }
 
-    public void subirDegats(int degats) {
-        super.subirDegats(degats);
-        if(getPvRestant() == 0) {
-            getBase().removeRecolteurs(this);
-        }
-    }
+
 
     // Start of user code to add methods for Recolteur
 

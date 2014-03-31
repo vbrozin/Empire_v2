@@ -31,7 +31,7 @@ public class Unite extends Agent implements IAgent{
     /**
      * Constructor.
      */
-    public Unite(Base b, int pv, int pa, int poa, double pov, Case<Point> c, Carte ca) {
+    public Unite(Base b, int pv, int pa, double poa, double pov, Case<Point> c, Carte ca) {
         // Start of user code for constructor Unite
         super(pv, c, ca);
         this.maBase = b;

@@ -22,7 +22,7 @@ import java.util.*;
  * Une case de notre carte
  */
 
-public class Case<T>{
+public class Case<T> extends Observable{
 
     /** La ressource s'il s'agit d'une case ressource*/
     private Ressource ressource;
@@ -83,6 +83,8 @@ public class Case<T>{
      */
     public void ajouterUnite(IAgent unite) {
         unites.add(unite);
+        setChanged();
+        notifyObservers();
     }
 
     /**
@@ -90,14 +92,10 @@ public class Case<T>{
      */
     public void retirerUnite(IAgent unite) {
         unites.remove(unite);
+        setChanged();
+        notifyObservers();
     }
 
-    /**
-     * Est-ce que la case contient l'unité en question.
-     */
-    public boolean contientUnite(Unite unite) {
-        return unites.contains(unite);
-    }
 
     /**
      * Retourne les unités contenues dans la case

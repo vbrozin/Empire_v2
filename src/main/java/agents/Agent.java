@@ -4,11 +4,12 @@ import environment.Carte;
 import environment.Case;
 
 import java.awt.*;
+import java.util.Observable;
 
 /**
  * Created by sylvainchen on 27/02/14.
  */
-public class Agent{
+public class Agent extends Observable{
     private int pvRestant;
     private Case<Point> maCase;
     private Carte maCarte;
@@ -35,6 +36,8 @@ public class Agent{
      */
     protected void setCase(Case<Point> c) {
         this.maCase = c;
+        setChanged();
+        notifyObservers();
     }
 
     /**

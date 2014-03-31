@@ -86,13 +86,14 @@ public class Base extends Agent implements IAgent, Constantes {
     private String nom;
     private Domaine domaine;
     private Jeu jeu;
+    private int strat;
 
 
 
     /**
      * Constructor.
      */
-    public Base(int bois, int nourriture, int pv, String nom, Carte c, Domaine dom) {
+    public Base(int bois, int nourriture, int pv, String nom, Carte c, Domaine dom, int str) {
         // Start of user code for constructor Base
         super(pv, dom.getCaseBase(), c);
         this.bois = bois;
@@ -102,7 +103,12 @@ public class Base extends Agent implements IAgent, Constantes {
         this.recolteurs = new ArrayList<Recolteur>();
         this.domaine = dom;
         this.domaine.getCaseBase().ajouterUnite(this);
+        this.strat = str;
         // End of user code
+    }
+
+    public int getStrat() {
+        return strat;
     }
 
     public Jeu getJeu() {
@@ -121,7 +127,7 @@ public class Base extends Agent implements IAgent, Constantes {
         return bois;
     }
 
-    public Case<Point> getPositionDePop() {
+    private Case<Point> getPositionDePop() {
         Case<Point> res = null;
         ArrayList<Case<Point>> cases = new ArrayList<Case<Point>>();
         for(Case<Point> c : domaine.getCasesUnitesLibres()) {
@@ -137,7 +143,7 @@ public class Base extends Agent implements IAgent, Constantes {
         return res;
     }
 
-    public Case<Point> getPositionDef() {
+    private Case<Point> getPositionDef() {
         Case<Point> res = null;
         ArrayList<Case<Point>> cases = new ArrayList<Case<Point>>();
         for(Case<Point> c : domaine.getCasesDefenses()) {
@@ -153,45 +159,45 @@ public class Base extends Agent implements IAgent, Constantes {
         return res;
     }
 
-    public void creerMele() {
+    private void creerMele() {
         if(nourriture >= MELE_COUT && defenseurs.size() < MAX_ATTAQUANTS + MAX_DEFENSEURS) {
             Case<Point> cas = getPositionDePop();
             if(cas != null)
             {
-                nourriture -= MELE_COUT;
+                decrementerRessource(0, MELE_COUT);
                 Attaquant at = new Attaquant(this, MELE_PV, MELE_AT, MELE_P_AT, MELE_P_V, cas, getCarte());
             }
         }
     }
 
-    public void creerArcher() {
+    private void creerArcher() {
         if(nourriture >= ARCHE_COUT && defenseurs.size() < MAX_ATTAQUANTS + MAX_DEFENSEURS) {
             Case<Point> cas = getPositionDePop();
             if(cas != null)
             {
-                nourriture -= ARCHE_COUT;
+                decrementerRessource(0, ARCHE_COUT);
                 Attaquant at = new Attaquant(this, ARCHE_PV, ARCHE_AT, ARCHE_P_AT, ARCHE_P_V, cas, getCarte());
             }
         }
     }
 
-     public void creerRecolteur() {
+    private void creerRecolteur() {
         if(nourriture >= RECOL_COUT && recolteurs.size() < MAX_RECOLTEURS) {
             Case<Point> cas = getPositionDePop();
             if(cas != null)
             {
-                nourriture -= RECOL_COUT;
+                decrementerRessource(0, RECOL_COUT);
                 Recolteur at = new Recolteur(this, RECOL_PV, RECOL_AT, RECOL_P_R, 0, cas, getCarte(), RECOL_CAP);
             }
         }
     }
 
     public void creerDefenseur() {
-        if(bois >= DEF_COUT && defenseurs.size() < MAX_DEFENSEURS) {
+        if(bois >= DEF_COUT && defenseurs.size() < MAX_DEFENSEURS + MAX_ATTAQUANTS) {
             Case<Point> cas = getPositionDef();
             if(cas != null)
             {
-                bois -= DEF_COUT;
+                decrementerRessource(DEF_COUT, 0);
                 Defenseur at = new Defenseur(this, DEF_PV, DEF_AT, DEF_P_AT, DEF_P_V, cas, getCarte());
             }
         }
@@ -261,6 +267,21 @@ public class Base extends Agent implements IAgent, Constantes {
         // Start of user code for method jouer
         this.bois += bois;
         this.nourriture += nourriture;
+        setChanged();
+        notifyObservers();
+        // End of user code
+    }
+
+    /**
+     * Description of the method incrementerRessource.
+     *
+     */
+    public void decrementerRessource(int bois, int nourriture) {
+        // Start of user code for method jouer
+        this.bois -= bois;
+        this.nourriture -= nourriture;
+        setChanged();
+        notifyObservers();
         // End of user code
     }
 
@@ -313,11 +334,11 @@ public class Base extends Agent implements IAgent, Constantes {
         if(nbRecolteur < MAX_RECOLTEURS)
             creerRecolteur();
 
-        recolter(TypeRessource.NOURRITURE);
-        while(nourriture > ARCHE_COUT && defenseurs.size() < MAX_DEFENSEURS + MAX_ATTAQUANTS) {
-            creerMele();
-        }
+        recolter();
         creerDefenseur();
+        while(nourriture > 4*RECOL_COUT && nourriture > ARCHE_COUT && defenseurs.size() < MAX_DEFENSEURS + MAX_ATTAQUANTS) {
+            creerArcher();
+        }
         attaquer();
     }
 
@@ -325,7 +346,7 @@ public class Base extends Agent implements IAgent, Constantes {
      * Stratégie d'attaque
      *
      */
-    public void attaquer() {
+    private void attaquer() {
         ArrayList<Case<Point>> cases = jeu.getCasesBases(this);
         // Calcul de la base la plus proche
         Case<Point> cible = calculerCasePlusProche(cases);
@@ -358,7 +379,7 @@ public class Base extends Agent implements IAgent, Constantes {
      * Stratégie de recolter
      *
      */
-    public void recolter() {
+     private void recolter() {
         ArrayList<Case<Point>> cases = getCarte().getCasesRessources(TypeRessource.BOIS);
         // Calcul de ressource la plus proche
         Case<Point> bois = calculerCasePlusProche(cases);
@@ -398,7 +419,7 @@ public class Base extends Agent implements IAgent, Constantes {
      * Stratégie de recolter
      *
      */
-    public void recolter(TypeRessource type) {
+    private void recolter(TypeRessource type) {
         ArrayList<Case<Point>> cases = getCarte().getCasesRessources(type);
         // Calcul de ressource la plus proche
         Case<Point> casePlusProche = calculerCasePlusProche(cases);
@@ -417,7 +438,7 @@ public class Base extends Agent implements IAgent, Constantes {
      */
     @Override
     public void reagir() {
-
+        jouer();
     }
 
     /**
@@ -432,7 +453,7 @@ public class Base extends Agent implements IAgent, Constantes {
      * Return maCase.
      * @return maCase
      */
-    public Case<Point> calculerCasePlusProche(ArrayList<Case<Point>> cases) {
+    private Case<Point> calculerCasePlusProche(ArrayList<Case<Point>> cases) {
         double distance = Double.MAX_VALUE;
         Case<Point> resultat = null;
         for(Case<Point> c : cases) {
@@ -462,6 +483,11 @@ public class Base extends Agent implements IAgent, Constantes {
             defenseurs = new ArrayList<Defenseur>();
             recolteurs = new ArrayList<Recolteur>();
             getCase().retirerUnite(this);
+            while(defenseurs.size() != 0) {
+                defenseurs.get(0).subirDegats(100);
+            }
+            setChanged();
+            notifyObservers();
         }
     }
 
@@ -479,7 +505,7 @@ public class Base extends Agent implements IAgent, Constantes {
         Case<Point> res = caseUnite;
 
         final AEtoile<Point> astart = new AEtoile<Point>(successorComputer, fabriqueNoeud);
-        final List<Point> result = astart.compute(caseUnite.getIndex(), destination.getIndex());
+        final List<Point> result = astart.calculer(caseUnite.getIndex(), destination.getIndex());
         if(result.size() > 1) {
                  res = (Case<Point>)getCarte().getMap().get(result.get(1));
         }

@@ -34,10 +34,43 @@ public class Jeu {
     /**Le temps */
     private double t;
 
+    private int s1;
+    private int s2;
+
     // Start of user code to add fields for Jeu
 
     // End of user code
 
+    /**
+     * Constructor.
+     */
+    public Jeu(Carte carte, int str, int str2) {
+        // Start of user code for constructor Jeu
+        super();
+        this.carte = carte;
+        bases = new ArrayList<Base>();
+        t = 0;
+        Domaine dom1 = carte.getDomaines().get(0);
+        Domaine dom2 = carte.getDomaines().get(1);
+        int rand = (int)(Math.random()*2);
+        Base b1;
+        Base b2;
+        if(rand == 0) {
+            b1 = new Base(1000,2000,50,"Valentin",carte, dom1, str);
+            b2 = new Base(1000,2000,50,"Sylvain",carte, dom2, str2);
+        }
+        else {
+            b1 = new Base(1000,2000,50,"Valentin",carte, dom2, str);
+            b2 = new Base(1000,2000,50,"Sylvain",carte, dom1, str2);
+        }
+        bases.add(b1);
+        bases.add(b2);
+        for(Base b : bases)
+            b.setJeu(this);
+        initTour();
+        choisirBaseCourante();
+        // End of user code
+    }
     /**
      * Constructor.
      */
@@ -47,6 +80,9 @@ public class Jeu {
         this.carte = carte;
         this.bases = bases;
         t = 0;
+        Domaine dom1 = carte.getDomaines().get(0);
+        Domaine dom2 = carte.getDomaines().get(1);
+        int rand = (int)(Math.random()*2);
         for(Base b : bases)
             b.setJeu(this);
         initTour();
@@ -93,7 +129,15 @@ public class Jeu {
      */
     public void jouer() {
         Base b = getBaseCourante();
-        if(b.getPvRestant() > 0)
+        if(b.getPvRestant() > 0) {
+            if(b.getStrat() == 1)
+                b.jouer();
+            if(b.getStrat() == 2)
+                b.jouer2();
+            if(b.getStrat() == 3)
+                b.jouer3();
+        }
+
             b.jouer();
         // La base courante vient de jouer
         if(tourFini()) {
@@ -187,6 +231,10 @@ public class Jeu {
                 cases.add(b.getCase());
         }
         return cases;
+    }
+
+    public Base getBaseGagnante() {
+        return bases.get(0);
     }
 
     // Start of user code to add methods for Jeu

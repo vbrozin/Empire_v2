@@ -20,6 +20,4 @@ public interface IAgent {
     public Base getBase();
 
     public void subirDegats(int b);
-
-    public int getPvRestant();
 }
